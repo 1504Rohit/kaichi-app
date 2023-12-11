@@ -36,6 +36,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   get: ^4.6.6
+  google_fonts: ^6.1.0
+  page_view_dot_indicator: ^2.3.0
   
 
 dev_dependencies:
@@ -76,8 +78,31 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
+  fonts:
+    - family: PoppinsBlack
+      fonts:
+        - asset: assets/fonts/Poppins-Black.ttf
+    - family: PoppinsBold
+      fonts:
+        - asset: assets/fonts/Poppins-Bold.ttf
+    - family: PoppinsExtraBold
+      fonts:
+        - asset: assets/fonts/Poppins-ExtraBold.ttf
+    - family: PoppinsLight
+      fonts:
+        - asset: assets/fonts/Poppins-Light.ttf
+    - family: PoppinsMedium
+      fonts:
+        - asset: assets/fonts/Poppins-Medium.ttf
+    - family: PoppinsRegular
+      fonts:    
+        - asset: assets/fonts/Poppins-Regular.ttf
+    - family: PoppinsSemiBold
+      fonts:
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+    - family: PoppinsThin
+      fonts:    
+        - asset: assets/fonts/Poppins-Thin.ttf
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf

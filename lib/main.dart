@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kaichi_user/view/home_page.dart';
-import 'package:kaichi_user/view/onbording.dart';
 import 'package:kaichi_user/view/splashScreen/splash_screen.dart';
 
 void main() {
