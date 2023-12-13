@@ -6,4 +6,6 @@ class AppColors {
   static Color White = Colors.white;
   static Color indicatorActive = Color.fromRGBO(255, 255, 255, 1);
   static Color indicatorInactive = Color.fromRGBO(255, 255, 255, 0.2);
+  static Color bodyColor = Color.fromRGBO(249, 249, 249, 1);
+  static Color formColor = Color.fromRGBO(255, 255, 255, 1);
 }

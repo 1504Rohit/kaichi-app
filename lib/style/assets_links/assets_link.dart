@@ -9,4 +9,8 @@ class Links {
   static String Nav2 = 'assets/Group.png';
   static String Nav3 = 'assets/Group (1).png';
   static String Nav4 = 'assets/Group (2).png';
+  static String notification = 'assets/profilePicture.png';
+  static String profile = 'assets/Ellipse 23.png';
+  static String downArrow = 'assets/Vector.png';
+  static String location = 'assets/path.png';
 }

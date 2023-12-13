@@ -6,7 +6,6 @@ import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/dot_indicator/dot_indicator.dart';
 import 'package:kaichi_user/view/authentication/login_page.dart';
 import 'package:kaichi_user/view_model/getx_onbording.dart';
-import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
 class OnbordingPage extends StatefulWidget {
   const OnbordingPage({super.key});
