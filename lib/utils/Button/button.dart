@@ -34,4 +34,24 @@ class StyleButton {
       ),
     );
   }
+
+  static Widget button(String title, Color color) {
+    return Container(
+      height: 31,
+      width: 160,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: color,
+      ),
+      child: Center(
+        child: Text(
+          title,
+          style: GoogleFonts.poppins(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: AppColors.background),
+        ),
+      ),
+    );
+  }
 }

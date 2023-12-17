@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/style/assets_links/assets_link.dart';
+import 'package:kaichi_user/utils/Button/button.dart';
+import 'package:kaichi_user/utils/bottomsheet/bottom_sheet.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
-import 'package:kaichi_user/view/homepage/petsalon_tabpage.dart';
-import 'package:kaichi_user/view/homepage/salon_tabpage.dart';
+import 'package:kaichi_user/utils/custom%20card/custom_card.dart';
 import 'package:kaichi_user/view/notification_page.dart';
-import 'package:kaichi_user/view_model/getx_homepage.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class AllSalonPage extends StatefulWidget {
+  const AllSalonPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<AllSalonPage> createState() => _AllSalonPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  HomeLogic homeController = Get.put(HomeLogic());
+class _AllSalonPageState extends State<AllSalonPage> {
   @override
   Widget build(BuildContext context) {
     double W = Mq.w;
@@ -37,70 +35,37 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Location',
-                          style: GoogleFonts.poppins(
-                              fontSize: W * .028,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.White),
-                        ),
-                        Container(
-                          height: W * .01,
-                        ),
-                        Text(
-                          '15A, James Street',
-                          style: GoogleFonts.poppins(
-                              fontSize: W * .040,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.White),
-                        )
-                      ],
+                    Icon(
+                      Icons.arrow_back,
+                      color: AppColors.White,
                     ),
-                    Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => const NotificationPage()));
-                          },
-                          child: SizedBox(
-                            height: W * .080,
-                            width: W * .080,
-                            child: Image.asset(
-                              'assets/notification.png',
-                            ),
-                          ),
+                    Text(
+                      'Salon',
+                      style: GoogleFonts.poppins(
+                          fontSize: W * .048,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.White),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const NotificationPage()));
+                      },
+                      child: SizedBox(
+                        height: W * .080,
+                        width: W * .080,
+                        child: Image.asset(
+                          'assets/notification.png',
                         ),
-                        Container(
-                          width: W * .04,
-                        ),
-                        SizedBox(
-                          height: W * .09,
-                          width: W * .09,
-                          child: Image.asset(
-                            'assets/profile.png',
-                          ),
-                        ),
-                        Container(
-                          height: W * .02,
-                        ),
-                        Container(
-                          height: W * .046,
-                          width: W * .046,
-                          child: Image.asset('assets/Vector.png'),
-                        ),
-                      ],
-                    )
+                      ),
+                    ),
                   ],
                 ),
               ),
               Container(
-                  height: W * .1,
+                  height: W * .10,
                   decoration: BoxDecoration(
                       border: Border(
                           bottom: BorderSide(
@@ -201,63 +166,91 @@ class _HomePageState extends State<HomePage> {
           )),
         ),
       ),
-      body: DefaultTabController(
-        length: 2,
-        child: Column(
-          children: [
-            SizedBox(
-              height: W * .040,
-            ),
-            Padding(
+      body: Column(
+        children: [
+          SizedBox(
+            height: W * .040,
+          ),
+          SizedBox(
+            height: W * .096,
+            width: double.infinity,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
               padding: EdgeInsets.symmetric(horizontal: W * .060),
-              child: Container(
-                  clipBehavior: Clip.hardEdge,
-                  height: W * .11,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: AppColors.formColor),
-                  child: TabBar(
-                    dividerHeight: 0,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicator: BoxDecoration(color: AppColors.buttonColor),
-                    splashBorderRadius: BorderRadius.circular(12),
-                    physics: const ClampingScrollPhysics(),
-                    tabs: [
-                      Tab(
-                        child: Center(
-                          child: Text(
-                            'Salon',
-                            style: GoogleFonts.poppins(
-                                fontSize: W * .035,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.background),
-                          ),
-                        ),
-                      ),
-                      Tab(
-                        child: Center(
-                          child: Text(
-                            'SalonPet Salon',
-                            style: GoogleFonts.poppins(
-                                fontSize: W * .035,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.background),
-                          ),
-                        ),
-                      )
-                    ],
-                  )),
+              children: [
+                StyleButton.button('Premium Salons', AppColors.buttonColor),
+                SizedBox(
+                  width: W * .040,
+                ),
+                StyleButton.button('Medium Salons', AppColors.White),
+                SizedBox(
+                  width: W * .040,
+                ),
+                StyleButton.button('Basic Salons', AppColors.White),
+              ],
             ),
-            SizedBox(
-              height: W * .040,
+          ),
+          Expanded(
+            child: Container(
+              child: ListView(
+                padding: EdgeInsets.only(top: W * .040),
+                scrollDirection: Axis.vertical,
+                children: [
+                  CustomCard.customCard1(
+                      'assets/salon.png',
+                      'Woodlands Hills Salon',
+                      'Beuty salon - Near PalletMall, Woodland Hills',
+                      '4.8 ( 1900 ratings )'),
+                  SizedBox(
+                    height: W * .040,
+                  ),
+                  CustomCard.customCard1(
+                      'assets/salon.png',
+                      'Woodlands Hills Salon',
+                      'Beuty salon - Near PalletMall, Woodland Hills',
+                      '4.8 ( 1900 ratings )'),
+                  SizedBox(
+                    height: W * .040,
+                  ),
+                  CustomCard.customCard1(
+                      'assets/salon.png',
+                      'Woodlands Hills Salon',
+                      'Beuty salon - Near PalletMall, Woodland Hills',
+                      '4.8 ( 1900 ratings )'),
+                  SizedBox(
+                    height: W * .040,
+                  ),
+                  CustomCard.customCard1(
+                      'assets/salon.png',
+                      'Woodlands Hills Salon',
+                      'Beuty salon - Near PalletMall, Woodland Hills',
+                      '4.8 ( 1900 ratings )'),
+                  SizedBox(
+                    height: W * .040,
+                  ),
+                  CustomCard.customCard1(
+                      'assets/salon.png',
+                      'Woodlands Hills Salon',
+                      'Beuty salon - Near PalletMall, Woodland Hills',
+                      '4.8 ( 1900 ratings )'),
+                  SizedBox(
+                    height: W * .040,
+                  ),
+                  CustomCard.customCard1(
+                      'assets/salon.png',
+                      'Woodlands Hills Salon',
+                      'Beuty salon - Near PalletMall, Woodland Hills',
+                      '4.8 ( 1900 ratings )')
+                ],
+              ),
             ),
-            Expanded(
-                child: TabBarView(
-              children: [SalonTab.salonTab(), PetSalonTab.petsalonTab()],
-            ))
-          ],
-        ),
+          )
+        ],
       ),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.White,
+          child: Image.asset('assets/filter.png'),
+          onPressed: () => CustomBottomSheet.bottomsheetFilter(context)),
     );
   }
 }

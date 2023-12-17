@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/style/assets_links/assets_link.dart';
+import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/view_model/getx_bottomNav.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -16,20 +17,22 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Navigation nav = Get.put(Navigation());
   @override
   Widget build(BuildContext context) {
+    double W = Mq.w;
     return Scaffold(
       body: Obx(
         () => nav.page[nav.pageNo.value],
       ),
       bottomNavigationBar: Container(
-        height: 83,
+        height: W * .166,
         decoration: BoxDecoration(
             color: AppColors.background,
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: EdgeInsets.symmetric(vertical: W * .025),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               InkWell(
                   onTap: () {
@@ -42,13 +45,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
                             color: nav.pageNo.value == 0
                                 ? AppColors.buttonColor
                                 : AppColors.White),
-                        const SizedBox(
-                          height: 8,
+                        SizedBox(
+                          height: W * .016,
                         ),
                         Text(
                           'Home',
                           style: GoogleFonts.poppins(
-                              fontSize: 12,
+                              fontSize: W * .024,
                               fontWeight: FontWeight.w600,
                               color: nav.pageNo.value == 0
                                   ? AppColors.buttonColor
@@ -66,17 +69,18 @@ class _BottomNavigationState extends State<BottomNavigation> {
                       children: [
                         Image.asset(
                           Links.Nav2,
+                          scale: 0.92,
                           color: nav.pageNo.value == 1
                               ? AppColors.buttonColor
                               : AppColors.White,
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: W * .016,
                         ),
                         Text(
                           'All salon',
                           style: GoogleFonts.poppins(
-                              fontSize: 12,
+                              fontSize: W * .024,
                               fontWeight: FontWeight.w600,
                               color: nav.pageNo.value == 1
                                   ? AppColors.buttonColor
@@ -98,13 +102,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
                               ? AppColors.buttonColor
                               : AppColors.White,
                         ),
-                        const SizedBox(
-                          height: 8,
+                        SizedBox(
+                          height: W * .016,
                         ),
                         Text(
                           'Booking',
                           style: GoogleFonts.poppins(
-                              fontSize: 12,
+                              fontSize: W * .024,
                               fontWeight: FontWeight.w600,
                               color: nav.pageNo.value == 2
                                   ? AppColors.buttonColor
@@ -126,13 +130,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
                               ? AppColors.buttonColor
                               : AppColors.White,
                         ),
-                        const SizedBox(
-                          height: 8,
+                        SizedBox(
+                          height: W * .016,
                         ),
                         Text(
                           'Account',
                           style: GoogleFonts.poppins(
-                              fontSize: 12,
+                              fontSize: W * .024,
                               fontWeight: FontWeight.w600,
                               color: nav.pageNo.value == 3
                                   ? AppColors.buttonColor

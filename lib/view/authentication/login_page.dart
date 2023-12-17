@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Container(
                 width: double.infinity,
                 child: Image.asset(
-                  Links.loginImage,
+                  'assets/loginBG.png',
                   fit: BoxFit.contain,
                 ),
               )),

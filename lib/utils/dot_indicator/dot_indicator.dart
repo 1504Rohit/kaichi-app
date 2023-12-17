@@ -54,4 +54,24 @@ class DotIndicator {
       ],
     );
   }
+
+  static Widget dots(int n, int l) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (int i = 0; i < n; i++)
+          Container(
+            margin: const EdgeInsets.only(left: 8),
+            height: i == l ? 11 : 7,
+            width: i == l ? 11 : 7,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: i == l
+                  ? AppColors.background
+                  : Color.fromRGBO(178, 184, 190, 1),
+            ),
+          )
+      ],
+    );
+  }
 }
