@@ -41,10 +41,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   child: Obx(
                     () => Column(
                       children: [
-                        Image.asset(Links.Nav1,
-                            color: nav.pageNo.value == 0
-                                ? AppColors.buttonColor
-                                : AppColors.White),
+                        Container(
+                          height: W * .055,
+                          width: W * .055,
+                          child: Image.asset(Links.Nav1,
+                              color: nav.pageNo.value == 0
+                                  ? AppColors.buttonColor
+                                  : AppColors.White),
+                        ),
                         SizedBox(
                           height: W * .016,
                         ),
@@ -67,12 +71,16 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   child: Obx(
                     () => Column(
                       children: [
-                        Image.asset(
-                          Links.Nav2,
-                          scale: 0.92,
-                          color: nav.pageNo.value == 1
-                              ? AppColors.buttonColor
-                              : AppColors.White,
+                        Container(
+                          height: W * .055,
+                          width: W * .055,
+                          child: Image.asset(
+                            Links.Nav2,
+                            scale: 0.92,
+                            color: nav.pageNo.value == 1
+                                ? AppColors.buttonColor
+                                : AppColors.White,
+                          ),
                         ),
                         SizedBox(
                           height: W * .016,
@@ -96,11 +104,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   child: Obx(
                     () => Column(
                       children: [
-                        Image.asset(
-                          Links.Nav3,
-                          color: nav.pageNo.value == 2
-                              ? AppColors.buttonColor
-                              : AppColors.White,
+                        Container(
+                          height: W * .055,
+                          width: W * .055,
+                          child: Image.asset(
+                            Links.Nav3,
+                            color: nav.pageNo.value == 2
+                                ? AppColors.buttonColor
+                                : AppColors.White,
+                          ),
                         ),
                         SizedBox(
                           height: W * .016,
@@ -124,11 +136,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   child: Obx(
                     () => Column(
                       children: [
-                        Image.asset(
-                          Links.Nav4,
-                          color: nav.pageNo.value == 3
-                              ? AppColors.buttonColor
-                              : AppColors.White,
+                        Container(
+                          height: W * .055,
+                          width: W * .055,
+                          child: Image.asset(
+                            Links.Nav4,
+                            color: nav.pageNo.value == 3
+                                ? AppColors.buttonColor
+                                : AppColors.White,
+                          ),
                         ),
                         SizedBox(
                           height: W * .016,

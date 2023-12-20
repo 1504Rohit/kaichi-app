@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/style/assets_links/assets_link.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
-import 'package:kaichi_user/view/bottom_navigation.dart';
+import 'package:kaichi_user/utils/constants/constants.dart';
+import 'package:kaichi_user/view/authentication/login_page1.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,6 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  double W = Mq.w;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           Align(
               alignment: Alignment.topCenter,
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 child: Image.asset(
                   'assets/loginBG.png',
@@ -30,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 539,
+              height: W * 1.14,
               width: double.infinity,
               decoration: BoxDecoration(
                   color: AppColors.background,
@@ -40,21 +42,21 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30),
-                    child: Container(
-                        height: 125,
-                        width: 129,
+                    padding: EdgeInsets.symmetric(vertical: W * .030),
+                    child: SizedBox(
+                        height: W * .250,
+                        width: W * .258,
                         child: Image.asset(Links.appLogo)),
                   ),
                   Text(
                     'Welcome to  Kainchi',
                     style: GoogleFonts.poppins(
-                        fontSize: 24,
+                        fontSize: W * .048,
                         fontWeight: FontWeight.w700,
                         color: AppColors.White),
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: W * .020,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -62,32 +64,31 @@ class _LoginPageState extends State<LoginPage> {
                       'You are one step away to get started Register tour salon here',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
-                          fontSize: 14,
+                          fontSize: W * .028,
                           fontWeight: FontWeight.w500,
                           color: AppColors.White),
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
+                  SizedBox(
+                    height: W * .060,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: EdgeInsets.symmetric(horizontal: W * .050),
                     child: InkWell(
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const BottomNavigation()));
+                                  builder: (context) => const LoginScreen()));
                         },
                         child: StyleButton.loginLike(
                             'LOGIN', AppColors.buttonColor)),
                   ),
-                  const SizedBox(
-                    height: 30,
+                  SizedBox(
+                    height: W * .060,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: EdgeInsets.symmetric(horizontal: W * .050),
                     child: StyleButton.loginLikeOutline(
                         'CREATE AN ACCOUNT', AppColors.background),
                   )

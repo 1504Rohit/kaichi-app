@@ -43,7 +43,7 @@ class AboutUsPage extends StatelessWidget {
             ListTile(
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => TermsPage()));
+                    context, MaterialPageRoute(builder: (_) => const TermsPage()));
               },
               title: Text(
                 'Terms of Service',

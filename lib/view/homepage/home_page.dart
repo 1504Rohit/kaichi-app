@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
-import 'package:kaichi_user/style/assets_links/assets_link.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/view/homepage/petsalon_tabpage.dart';
 import 'package:kaichi_user/view/homepage/salon_tabpage.dart';
@@ -89,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                         Container(
                           height: W * .02,
                         ),
-                        Container(
+                        SizedBox(
                           height: W * .046,
                           width: W * .046,
                           child: Image.asset('assets/Vector.png'),

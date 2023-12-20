@@ -27,61 +27,66 @@ class _OnbordingPageState extends State<OnbordingPage> {
           itemCount: content.length,
           controller: logic.controller.value,
           itemBuilder: (context, index) {
-            return Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                opacity: 0.7,
-                colorFilter:
-                    const ColorFilter.mode(Colors.black, BlendMode.dstATop),
-                fit: BoxFit.cover,
-                image: AssetImage(content[index].bgImage),
-              )),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 60, right: 15),
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: TextButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LoginPage()));
-                          },
-                          child: Text(
-                            'Skip',
-                            style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.White),
-                          )),
-                    ),
-                  ),
-                  Column(
+            return Stack(
+              children: [
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                    opacity: 0.7,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.black, BlendMode.dstATop),
+                    fit: BoxFit.cover,
+                    image: AssetImage(content[index].bgImage),
+                  )),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          content[index].details,
-                          style: GoogleFonts.poppins(
-                              fontSize: 32,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.White),
+                        padding: const EdgeInsets.only(top: 60, right: 15),
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: TextButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LoginPage()));
+                              },
+                              child: Text(
+                                'Skip',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.White),
+                              )),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 30),
-                        child: Obx(() =>
-                            DotIndicator().indicator(logic.pageCount.value)),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Text(
+                              content[index].details,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.White),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 30),
+                            child: Obx(() => DotIndicator()
+                                .indicator(logic.pageCount.value)),
+                          )
+                        ],
                       )
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             );
           }),
     );

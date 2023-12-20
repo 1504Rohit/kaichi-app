@@ -1,4 +1,3 @@
-import 'package:kaichi_user/style/assets_links/assets_link.dart';
 
 class Onboardings {
   String details;

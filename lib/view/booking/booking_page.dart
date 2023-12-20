@@ -33,7 +33,7 @@ class _BookingPageState extends State<BookingPage> {
                   children: [
                     Icon(
                       Icons.arrow_back,
-                      color: AppColors.White,
+                      color: AppColors.background,
                     ),
                     Text(
                       'Booking',

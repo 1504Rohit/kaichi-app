@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
-import 'package:kaichi_user/style/assets_links/assets_link.dart';
-import 'package:kaichi_user/utils/Button/button.dart';
 import 'package:kaichi_user/utils/bottomsheet/bottom_sheet.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/utils/dialog/custom_dialog.dart';
@@ -111,7 +109,7 @@ class _AccountPageState extends State<AccountPage> {
                       MaterialPageRoute(
                           builder: (_) => const ManageAddressPage()));
                 },
-                leading: Container(
+                leading: SizedBox(
                   height: W * .06,
                   width: W * .06,
                   child: Image.asset(
@@ -136,7 +134,7 @@ class _AccountPageState extends State<AccountPage> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (_) => const FavouritePage()));
                 },
-                leading: Container(
+                leading: SizedBox(
                   height: W * .06,
                   width: W * .06,
                   child: Image.asset(
@@ -192,7 +190,7 @@ class _AccountPageState extends State<AccountPage> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (_) => const AboutUsPage()));
                 },
-                leading: Container(
+                leading: SizedBox(
                   height: W * .06,
                   width: W * .06,
                   child: Image.asset(
@@ -219,7 +217,7 @@ class _AccountPageState extends State<AccountPage> {
                     'Are you sure want to logout from the app?',
                     'LOGOUT',
                     AppColors.buttonColor),
-                leading: Container(
+                leading: SizedBox(
                   height: W * .06,
                   width: W * .06,
                   child: Image.asset(

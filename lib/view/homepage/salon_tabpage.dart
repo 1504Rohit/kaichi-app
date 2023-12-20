@@ -113,7 +113,7 @@ class SalonTab {
           Padding(
             padding:
                 EdgeInsets.symmetric(horizontal: W * .060, vertical: W * .040),
-            child: Container(
+            child: SizedBox(
               height: W * .080,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

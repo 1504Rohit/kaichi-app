@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
-import 'package:kaichi_user/style/assets_links/assets_link.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
 import 'package:kaichi_user/utils/bottomsheet/bottom_sheet.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
@@ -37,7 +36,7 @@ class _AllSalonPageState extends State<AllSalonPage> {
                   children: [
                     Icon(
                       Icons.arrow_back,
-                      color: AppColors.White,
+                      color: AppColors.background,
                     ),
                     Text(
                       'Salon',
@@ -197,6 +196,7 @@ class _AllSalonPageState extends State<AllSalonPage> {
                 scrollDirection: Axis.vertical,
                 children: [
                   CustomCard.customCard1(
+                      context,
                       'assets/salon.png',
                       'Woodlands Hills Salon',
                       'Beuty salon - Near PalletMall, Woodland Hills',
@@ -205,6 +205,7 @@ class _AllSalonPageState extends State<AllSalonPage> {
                     height: W * .040,
                   ),
                   CustomCard.customCard1(
+                      context,
                       'assets/salon.png',
                       'Woodlands Hills Salon',
                       'Beuty salon - Near PalletMall, Woodland Hills',
@@ -213,6 +214,7 @@ class _AllSalonPageState extends State<AllSalonPage> {
                     height: W * .040,
                   ),
                   CustomCard.customCard1(
+                      context,
                       'assets/salon.png',
                       'Woodlands Hills Salon',
                       'Beuty salon - Near PalletMall, Woodland Hills',
@@ -221,6 +223,7 @@ class _AllSalonPageState extends State<AllSalonPage> {
                     height: W * .040,
                   ),
                   CustomCard.customCard1(
+                      context,
                       'assets/salon.png',
                       'Woodlands Hills Salon',
                       'Beuty salon - Near PalletMall, Woodland Hills',
@@ -229,6 +232,7 @@ class _AllSalonPageState extends State<AllSalonPage> {
                     height: W * .040,
                   ),
                   CustomCard.customCard1(
+                      context,
                       'assets/salon.png',
                       'Woodlands Hills Salon',
                       'Beuty salon - Near PalletMall, Woodland Hills',
@@ -237,6 +241,7 @@ class _AllSalonPageState extends State<AllSalonPage> {
                     height: W * .040,
                   ),
                   CustomCard.customCard1(
+                      context,
                       'assets/salon.png',
                       'Woodlands Hills Salon',
                       'Beuty salon - Near PalletMall, Woodland Hills',

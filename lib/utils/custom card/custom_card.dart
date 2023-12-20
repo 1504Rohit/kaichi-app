@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
+import 'package:kaichi_user/view/salondetails_page.dart';
 
 class CustomCard {
   static Widget customCard3(String qus, String ans) {
@@ -45,7 +46,7 @@ class CustomCard {
     VoidCallback onClickEdit,
   ) {
     double W = Mq.w;
-    return Container(
+    return SizedBox(
       height: W * .280,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -311,7 +312,7 @@ class CustomCard {
                       SizedBox(
                         height: W * .006,
                       ),
-                      Container(
+                      SizedBox(
                         width: W * .380,
                         child: Text(
                           price,
@@ -359,105 +360,122 @@ class CustomCard {
     );
   }
 
-  static Widget customCard1(
-      String pic, String heading, String address, String rating) {
+  static Widget customCard1(BuildContext context, String pic, String heading,
+      String address, String rating) {
     double W = Mq.w;
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: W * .060),
-      child: Container(
-        height: W * .236,
-        decoration: BoxDecoration(
-            border: Border.all(color: AppColors.buttonColor, width: 0.5),
-            borderRadius: BorderRadius.circular(12)),
-        child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Flexible(
-            flex: 2,
-            child: Container(
-              height: W * .236,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.contain, image: AssetImage(pic))),
-              child: Padding(
-                padding: EdgeInsets.all(W * .020),
-                child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset('assets/Group 34359.png')),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 5,
-            child: Container(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: W * .020, horizontal: W * .020),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      child: Text(
-                        heading,
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .036,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.background),
-                      ),
-                    ),
-                    SizedBox(
-                      height: W * .006,
-                    ),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/star.png'),
-                          SizedBox(
-                            width: W * .005,
-                          ),
-                          Text(
-                            rating,
-                            style: GoogleFonts.poppins(
-                                fontSize: W * .024,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: W * .003,
-                    ),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/location.png'),
-                          SizedBox(
-                            width: W * .005,
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: Text(
-                                address,
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.poppins(
-                                    fontSize: W * .024,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (_) => SalonDetailsPage(
+                        name: heading,
+                        rating: rating,
+                        location: address,
+                        images: const [
+                          'assets/salondetailspic.png',
+                          'assets/salondetailspic.png',
+                          'assets/salondetailspic.png',
+                          'assets/salondetailspic.png'
+                        ])));
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: W * .060),
+        child: Container(
+          height: W * .236,
+          decoration: BoxDecoration(
+              border: Border.all(color: AppColors.buttonColor, width: 0.5),
+              borderRadius: BorderRadius.circular(12)),
+          child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+            Flexible(
+              flex: 2,
+              child: Container(
+                height: W * .236,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.contain, image: AssetImage(pic))),
+                child: Padding(
+                  padding: EdgeInsets.all(W * .020),
+                  child: Align(
+                      alignment: Alignment.topRight,
+                      child: Image.asset('assets/Group 34359.png')),
                 ),
               ),
             ),
-          )
-        ]),
+            Flexible(
+              flex: 5,
+              child: Container(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: W * .020, horizontal: W * .020),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        child: Text(
+                          heading,
+                          style: GoogleFonts.poppins(
+                              fontSize: W * .036,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.background),
+                        ),
+                      ),
+                      SizedBox(
+                        height: W * .006,
+                      ),
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset('assets/star.png'),
+                            SizedBox(
+                              width: W * .005,
+                            ),
+                            Text(
+                              rating,
+                              style: GoogleFonts.poppins(
+                                  fontSize: W * .024,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: W * .003,
+                      ),
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset('assets/location.png'),
+                            SizedBox(
+                              width: W * .005,
+                            ),
+                            Expanded(
+                              child: Container(
+                                child: Text(
+                                  address,
+                                  textAlign: TextAlign.left,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: W * .024,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ]),
+        ),
       ),
     );
   }

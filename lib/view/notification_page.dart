@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
-import 'package:kaichi_user/style/assets_links/assets_link.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 
 class NotificationPage extends StatefulWidget {

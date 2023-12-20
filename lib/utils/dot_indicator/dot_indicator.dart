@@ -68,7 +68,7 @@ class DotIndicator {
               shape: BoxShape.circle,
               color: i == l
                   ? AppColors.background
-                  : Color.fromRGBO(178, 184, 190, 1),
+                  : const Color.fromRGBO(178, 184, 190, 1),
             ),
           )
       ],

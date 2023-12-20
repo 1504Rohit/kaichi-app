@@ -20,7 +20,7 @@ class CustomBottomSheet {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   height: W * .116,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -78,7 +78,7 @@ class CustomBottomSheet {
                         color: const Color.fromRGBO(242, 242, 245, 1),
                         child: Column(
                           children: [
-                            Container(
+                            SizedBox(
                               height: W * .116,
                               child: Center(
                                 child: Text(
@@ -91,7 +91,7 @@ class CustomBottomSheet {
                               ),
                             ),
                             const Divider(),
-                            Container(
+                            SizedBox(
                               height: W * .116,
                               child: Center(
                                 child: Text(
@@ -104,7 +104,7 @@ class CustomBottomSheet {
                               ),
                             ),
                             const Divider(),
-                            Container(
+                            SizedBox(
                               height: W * .116,
                               child: Center(
                                 child: Text(
@@ -117,7 +117,7 @@ class CustomBottomSheet {
                               ),
                             ),
                             const Divider(),
-                            Container(
+                            SizedBox(
                               height: W * .116,
                               child: Center(
                                 child: Text(
@@ -150,7 +150,7 @@ class CustomBottomSheet {
         context: context,
         builder: (builder) {
           return Container(
-            height: W * .500,
+            height: W * .550,
             decoration: const BoxDecoration(
                 color: Color.fromRGBO(255, 255, 255, 1),
                 borderRadius: BorderRadius.only(
@@ -182,7 +182,7 @@ class CustomBottomSheet {
                   SizedBox(
                     height: W * .020,
                   ),
-                  Container(
+                  SizedBox(
                     width: W * .516,
                     child: Text(
                       sub,
