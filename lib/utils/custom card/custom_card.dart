@@ -561,4 +561,32 @@ class CustomCard {
       ),
     );
   }
+
+  static Widget userRatingCard(String name, String pic, int Star, int time) {
+    double W = Mq.w;
+    return ListTile(
+      leading: CircleAvatar(
+        backgroundImage: AssetImage(pic),
+      ),
+      title: Text(
+        name,
+        style: GoogleFonts.poppins(
+            fontSize: W * .040,
+            fontWeight: FontWeight.w600,
+            color: Colors.black),
+      ),
+      subtitle: Row(
+        children: [
+          for (int i = 0; i < 5; i++)
+            Image.asset('assets/star.png',
+                color: i < Star ? AppColors.buttonColor : Colors.grey),
+        ],
+      ),
+      trailing: Text('${time} min ago',
+          style: GoogleFonts.poppins(
+              fontSize: W * .034,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey.shade600)),
+    );
+  }
 }

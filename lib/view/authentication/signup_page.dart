@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
@@ -22,11 +23,12 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     double W = Mq.w;
     return Scaffold(
+      backgroundColor: AppColors.White,
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              height: W * .436,
+              height: W * .416,
               width: double.infinity,
               color: AppColors.background,
               child: Padding(
@@ -346,7 +348,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             SizedBox(
-              height: W * .040,
+              height: W * .020,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: W * .060),

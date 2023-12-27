@@ -22,6 +22,28 @@ class StyleButton {
     );
   }
 
+  static Widget loginLikeOutlineBlack(
+    String name,
+  ) {
+    double W = Mq.w;
+    return Container(
+      height: W * .12,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black, width: 1),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Center(
+        child: Text(
+          name,
+          style: GoogleFonts.poppins(
+              fontSize: W * .032,
+              fontWeight: FontWeight.w600,
+              color: Colors.black),
+        ),
+      ),
+    );
+  }
+
   static Widget loginLikeOutline(String name, Color color) {
     double W = Mq.w;
     return Container(

@@ -1,72 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/utils/custom%20card/custom_card.dart';
 import 'package:kaichi_user/utils/dot_indicator/dot_indicator.dart';
+import 'package:card_swiper/card_swiper.dart';
+import 'package:kaichi_user/view_model/getx_homepage.dart';
 
 class SalonTab {
   static Widget salonTab() {
     double W = Mq.w;
+    HomeLogic homeLogic = Get.put(HomeLogic());
     return SingleChildScrollView(
       child: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: W * .060),
-            child: Container(
-              height: W * .430,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  image: const DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/slide1.png'))),
-              child: Stack(children: [
-                Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      image: const DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage('assets/Frame 34316.png'))),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(W * .030),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'The Beauty Hub',
-                            style: GoogleFonts.poppins(
-                                fontSize: W * .048,
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.buttonColor),
-                          ),
-                          Text(
-                            'Get Up To 40% OFF',
-                            style: GoogleFonts.poppins(
-                                fontSize: W * .028,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.White),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ]),
+          Container(
+            height: W * .430,
+            child: Swiper(
+              onIndexChanged: (value) {
+                homeLogic.pageNo1.value = value;
+              },
+              itemBuilder: (BuildContext context, int index) {
+                return homeLogic.pages1[index];
+              },
+              itemCount: homeLogic.pages1.length,
+              autoplay: true,
             ),
           ),
           SizedBox(
             height: W * .03,
           ),
-          DotIndicator.dots(5, 3),
+          Obx(
+            () => DotIndicator.dots(
+                homeLogic.pages1.length, homeLogic.pageNo1.value),
+          ),
           Padding(
             padding:
                 EdgeInsets.symmetric(horizontal: W * .060, vertical: W * .040),

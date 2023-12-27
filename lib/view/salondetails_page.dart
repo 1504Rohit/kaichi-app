@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
+import 'package:kaichi_user/utils/Button/button.dart';
+import 'package:kaichi_user/utils/bottomsheet/bottom_sheet.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
+import 'package:kaichi_user/utils/custom%20card/custom_card.dart';
+import 'package:kaichi_user/utils/customslider/custom_slider.dart';
+import 'package:kaichi_user/view/googlemap/googlemap_page.dart';
+import 'package:kaichi_user/view/selectitem_page.dart';
 import 'package:kaichi_user/view_model/getx_salondetails.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -30,15 +36,63 @@ class _SalonDetailsPageState extends State<SalonDetailsPage> {
   Widget build(BuildContext context) {
     double W = Mq.w;
     return Scaffold(
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(W * .148),
+            child: Obx(() => AnimatedContainer(
+                  height: W * .248,
+                  duration: Duration(milliseconds: 10),
+                  decoration: BoxDecoration(
+                      color:
+                          Colors.white.withOpacity(controller.onSlide.value)),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: W * .040, horizontal: W * .060),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: controller.onSlide.value > 0.7
+                                ? Colors.black
+                                : Colors.white,
+                          ),
+                        ),
+                        Text(
+                          widget.name,
+                          style: GoogleFonts.poppins(
+                            fontSize: W * .042,
+                            fontWeight: FontWeight.w600,
+                            color: controller.onSlide.value > 0.7
+                                ? Colors.black
+                                : Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          height: W * .060,
+                          child: Image.asset(
+                            'assets/search.png',
+                            color: controller.onSlide.value > 0.7
+                                ? Colors.black
+                                : Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ))),
+        extendBodyBehindAppBar: true,
         body: SlidingUpPanel(
-            onPanelOpened: () {
-              controller.isPageClosed.value = true;
-            },
-            onPanelClosed: () {
-              controller.isPageClosed.value = false;
+            onPanelSlide: (value) {
+              print(value);
+              controller.onSlide.value = value;
             },
             minHeight: (Mq.h) - (W * .800),
-            maxHeight: 800,
+            maxHeight: Mq.h,
             panel: Column(
               children: [
                 SizedBox(
@@ -258,97 +312,131 @@ class _SalonDetailsPageState extends State<SalonDetailsPage> {
                           SizedBox(
                             width: W * .020,
                           ),
-                          Column(
-                            children: [
-                              SizedBox(
-                                height: W * .055,
-                                width: W * .055,
-                                child: Image.asset('assets/pinlocation.png'),
-                              ),
-                              SizedBox(
-                                width: W * .010,
-                              ),
-                              Text('Directions ',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: W * .032,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black)),
-                            ],
-                          ),
-                          SizedBox(
-                            width: W * .020,
-                          ),
-                          Column(
-                            children: [
-                              SizedBox(
-                                height: W * .055,
-                                width: W * .055,
-                                child: Image.asset('assets/share.png'),
-                              ),
-                              SizedBox(
-                                width: W * .010,
-                              ),
-                              Text('Share',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: W * .032,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black)),
-                            ],
-                          ),
-                          SizedBox(
-                            width: W * .020,
-                          ),
-                          Column(
-                            children: [
-                              SizedBox(
-                                height: W * .055,
-                                width: W * .055,
-                                child: Image.asset('assets/heart.png'),
-                              ),
-                              SizedBox(
-                                width: W * .010,
-                              ),
-                              Text('Favorite',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: W * .032,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black)),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                            height: W * .055,
-                            width: W * .13,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                  color: AppColors.buttonColor, width: 1),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => GoogleMapPage(
+                                            address: widget.location,
+                                            name: widget.name,
+                                            timing: '8:30 AM  -  9:30 PM ',
+                                            pic: 'assets/salon.png',
+                                          )));
+                            },
+                            child: Column(
                               children: [
                                 SizedBox(
-                                  height: W * .04,
-                                  width: W * .04,
-                                  child: Image.asset('assets/staroutline.png'),
+                                  height: W * .055,
+                                  width: W * .055,
+                                  child: Image.asset('assets/pinlocation.png'),
                                 ),
-                                Text('4.1',
+                                SizedBox(
+                                  width: W * .010,
+                                ),
+                                Text('Directions ',
                                     style: GoogleFonts.poppins(
-                                        fontSize: W * .038,
+                                        fontSize: W * .032,
                                         fontWeight: FontWeight.w500,
-                                        color: AppColors.buttonColor)),
+                                        color: Colors.black)),
                               ],
                             ),
                           ),
-                          Text('5k+ ratings',
-                              style: GoogleFonts.poppins(
-                                  fontSize: W * .032,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black)),
+                          SizedBox(
+                            width: W * .020,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              CustomBottomSheet.bottomsheetShare(context);
+                            },
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: W * .055,
+                                  width: W * .055,
+                                  child: Image.asset('assets/share.png'),
+                                ),
+                                SizedBox(
+                                  width: W * .010,
+                                ),
+                                Text('Share',
+                                    style: GoogleFonts.poppins(
+                                        fontSize: W * .032,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black)),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: W * .020,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              controller.isFavourite.value =
+                                  !controller.isFavourite.value;
+                            },
+                            child: Column(
+                              children: [
+                                Obx(() => SizedBox(
+                                      height: W * .055,
+                                      width: W * .055,
+                                      child: controller.isFavourite.value
+                                          ? Icon(
+                                              Icons.favorite,
+                                              color: AppColors.buttonColor,
+                                            )
+                                          : Image.asset('assets/heart.png'),
+                                    )),
+                                SizedBox(
+                                  width: W * .010,
+                                ),
+                                Text('Favorite',
+                                    style: GoogleFonts.poppins(
+                                        fontSize: W * .032,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black)),
+                              ],
+                            ),
+                          ),
                         ],
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Column(
+                          children: [
+                            Container(
+                              height: W * .055,
+                              width: W * .13,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    color: AppColors.buttonColor, width: 1),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  SizedBox(
+                                    height: W * .04,
+                                    width: W * .04,
+                                    child:
+                                        Image.asset('assets/staroutline.png'),
+                                  ),
+                                  Text('4.1',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: W * .038,
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColors.buttonColor)),
+                                ],
+                              ),
+                            ),
+                            Text('5k+ ratings',
+                                style: GoogleFonts.poppins(
+                                    fontSize: W * .032,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black)),
+                          ],
+                        ),
                       )
                     ],
                   ),
@@ -443,117 +531,413 @@ class _SalonDetailsPageState extends State<SalonDetailsPage> {
                   ),
                 ),
                 SizedBox(
-                  height: W * .20,
+                  height: W * .040,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: W * .060),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Popular Services',
-                      style: GoogleFonts.poppins(
-                          fontSize: W * .048,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: W * .060,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: W * .060),
-                  child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Container(
+                  height: W * 1.220,
+                  child: ListView(
+                    scrollDirection: Axis.vertical,
+                    children: [
+                      Container(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: W * .060),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Popular Services',
+                                    style: GoogleFonts.poppins(
+                                        fontSize: W * .048,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => SelectItemPage(
+                                                  name: widget.name)));
+                                    },
+                                    child: Text(
+                                      'View all >',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: W * .038,
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColors.buttonColor),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: W * .060,
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: W * .060),
+                              child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      CircleAvatar(
+                                        radius: W * .130,
+                                        backgroundImage: const AssetImage(
+                                            'assets/service1.jpg'),
+                                      ),
+                                      CircleAvatar(
+                                        radius: W * .130,
+                                        backgroundImage: const AssetImage(
+                                            'assets/service2.jpg'),
+                                      ),
+                                      CircleAvatar(
+                                        radius: W * .130,
+                                        backgroundImage: const AssetImage(
+                                            'assets/service3.webp'),
+                                      )
+                                    ],
+                                  )),
+                            ),
+                            SizedBox(
+                              height: W * .060,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Column(
                         children: [
-                          CircleAvatar(
-                            radius: W * .130,
-                            backgroundImage:
-                                const AssetImage('assets/service1.jpg'),
+                          SizedBox(
+                            height: W * .060,
                           ),
-                          CircleAvatar(
-                            radius: W * .130,
-                            backgroundImage:
-                                const AssetImage('assets/service2.jpg'),
+                          Container(
+                            color: Colors.white,
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: W * .090,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: W * .060),
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          'Ratings & Reviews(273)',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: W * .048,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: W * .060,
+                                      ),
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          'Summary',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: W * .048,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.grey),
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    '5',
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: W * .048,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.black),
+                                                  ),
+                                                  SizedBox(
+                                                    width: W * .010,
+                                                  ),
+                                                  CustomSlider.customSlider(1),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    '4',
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: W * .048,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.black),
+                                                  ),
+                                                  SizedBox(
+                                                    width: W * .010,
+                                                  ),
+                                                  CustomSlider.customSlider(
+                                                      1.4),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    '3',
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: W * .048,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.black),
+                                                  ),
+                                                  SizedBox(
+                                                    width: W * .010,
+                                                  ),
+                                                  CustomSlider.customSlider(
+                                                      1.8),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    '2',
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: W * .048,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.black),
+                                                  ),
+                                                  SizedBox(
+                                                    width: W * .010,
+                                                  ),
+                                                  CustomSlider.customSlider(2),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    '1',
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: W * .048,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.black),
+                                                  ),
+                                                  SizedBox(
+                                                    width: W * .010,
+                                                  ),
+                                                  CustomSlider.customSlider(
+                                                      2.4),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            width: W * .060,
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        '4.5',
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                fontSize:
+                                                                    W * .076,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                      ),
+                                                      SizedBox(
+                                                        width: W * .010,
+                                                      ),
+                                                      Image.asset(
+                                                        'assets/star.png',
+                                                        scale: 0.8,
+                                                      )
+                                                    ],
+                                                  ),
+                                                  Text('273 Reviews',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              fontSize:
+                                                                  W * .034,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color:
+                                                                  Colors.grey))
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: W * .060,
+                                              ),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        '88%',
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                fontSize:
+                                                                    W * .076,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                      ),
+                                                      SizedBox(
+                                                        width: W * .010,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Text('Recommended',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              fontSize:
+                                                                  W * .034,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color:
+                                                                  Colors.grey))
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: W * .020,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: W * .060),
+                                  child: InkWell(
+                                      onTap: () {
+                                        CustomBottomSheet.bottomsSheetReview(
+                                            context,
+                                            'Write a review',
+                                            '',
+                                            'POST',
+                                            AppColors.buttonColor);
+                                      },
+                                      child: StyleButton.loginLikeOutlineBlack(
+                                          'WRITE A REVIEW')),
+                                ),
+                                SizedBox(
+                                  height: W * .020,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: W * .060),
+                                  child: Container(
+                                      child: RichText(
+                                    text: TextSpan(
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text:
+                                                'Product reviews are managed by a third party to verify authenticity and compliance with',
+                                            style: GoogleFonts.poppins(
+                                                fontSize: W * .034,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.grey.shade600)),
+                                        TextSpan(
+                                            text:
+                                                'Ratings & Reviews Guidelines',
+                                            style: GoogleFonts.poppins(
+                                                fontSize: W * .034,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.blue)),
+                                      ],
+                                    ),
+                                  )),
+                                ),
+                                Container(
+                                  child: CustomCard.userRatingCard(
+                                      'Kristin Watson',
+                                      'assets/profile.png',
+                                      4,
+                                      2),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: W * .060),
+                                  child: Container(
+                                      child: Text(
+                                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: W * .034,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.grey.shade600))),
+                                ),
+                                SizedBox(
+                                  height: W * .220,
+                                ),
+                              ],
+                            ),
                           ),
-                          CircleAvatar(
-                            radius: W * .130,
-                            backgroundImage: const AssetImage('assets/service3.webp'),
-                          )
                         ],
-                      )),
-                ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
             body: Stack(children: [
-              SizedBox(
-                height: W * .800,
-                child: PageView.builder(
-                    onPageChanged: (value) {
-                      controller.page.value = value;
-                    },
-                    scrollDirection: Axis.horizontal,
-                    itemCount: widget.images.length,
-                    controller: controller.controller.value,
-                    itemBuilder: (context, index) {
-                      return Obx(() => Align(
-                            alignment: Alignment.topCenter,
-                            child: Container(
-                              height: W * .800,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      colorFilter: controller.isPageClosed.value
-                                          ? const ColorFilter.mode(
-                                              Colors.black, BlendMode.dstATop)
-                                          : null,
-                                      fit: BoxFit.cover,
-                                      image: AssetImage(widget.images[index]))),
-                            ),
-                          ));
-                    }),
+              Obx(
+                () => AnimatedContainer(
+                  duration: const Duration(microseconds: 1),
+                  height: W * .800,
+                  child: PageView.builder(
+                      onPageChanged: (value) {
+                        controller.page.value = value;
+                      },
+                      scrollDirection: Axis.horizontal,
+                      itemCount: widget.images.length,
+                      controller: controller.controller.value,
+                      itemBuilder: (context, index) {
+                        return Align(
+                          alignment: Alignment.topCenter,
+                          child: Container(
+                            height: W * .800,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    colorFilter: ColorFilter.mode(
+                                        Colors.black.withOpacity(
+                                            1 - controller.onSlide.value),
+                                        BlendMode.dstIn),
+                                    fit: BoxFit.cover,
+                                    image: AssetImage(widget.images[index]))),
+                          ),
+                        );
+                      }),
+                ),
               ),
               Column(children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: W * .060, vertical: W * .030),
-                  child: SizedBox(
-                    height: W * .25,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          widget.name,
-                          style: GoogleFonts.poppins(
-                              fontSize: W * .042,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
-                        ),
-                        SizedBox(
-                          height: W * .060,
-                          child: Image.asset(
-                            'assets/search.png',
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
                 Column(children: [
                   SizedBox(
-                    height: W * .220,
+                    height: W * .520,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: W * .060),
@@ -671,7 +1055,7 @@ class _SalonDetailsPageState extends State<SalonDetailsPage> {
                     ],
                   ),
                 ]),
-              ])
+              ]),
             ])));
   }
 }
