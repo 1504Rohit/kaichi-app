@@ -16,11 +16,13 @@ class _ForgotPageState extends State<ForgotPage> {
   Widget build(BuildContext context) {
     double W = Mq.w;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: W * .060, vertical: W * .060),
+        padding: EdgeInsets.only(
+            left: W * .060, right: W * .060, bottom: Mq.h * .010),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,31 +33,35 @@ class _ForgotPageState extends State<ForgotPage> {
                 Text(
                   'Resset Password',
                   style: GoogleFonts.poppins(
-                      fontSize: W * .070,
+                      fontSize: W * .085,
                       fontWeight: FontWeight.w700,
                       color: AppColors.background),
                 ),
                 SizedBox(
-                  height: W * .040,
+                  height: Mq.h * .020,
                 ),
                 Container(
                   child: Text(
                     'Please enter your email address to request a password reset',
                     style: GoogleFonts.poppins(
-                        fontSize: W * .032,
+                        fontSize: W * .038,
                         fontWeight: FontWeight.w500,
                         color: Colors.grey),
                   ),
                 ),
                 SizedBox(
-                  height: W * .040,
+                  height: Mq.h * .020,
                 ),
                 SizedBox(
-                  height: W * .12,
+                  height: Mq.h * .058,
                   child: Center(
                     child: TextFormField(
-                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(
+                            top: Mq.h * .020,
+                            bottom: Mq.h * .020,
+                            left: W * .040,
+                            right: W * .040),
                         focusColor: AppColors.background,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12)),
@@ -74,7 +80,8 @@ class _ForgotPageState extends State<ForgotPage> {
                 ),
               ],
             ),
-            StyleButton.loginLike('SEND', AppColors.buttonColor)
+            StyleButton.loginLike(
+                context, () {}, 'SEND', AppColors.buttonColor),
           ],
         ),
       ),

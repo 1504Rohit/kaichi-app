@@ -18,7 +18,7 @@ class _BookingPageState extends State<BookingPage> {
     double W = Mq.w;
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(W * .198),
+        preferredSize: Size.fromHeight(W * .148),
         child: Container(
           decoration: BoxDecoration(color: AppColors.background),
           child: SafeArea(
@@ -69,9 +69,10 @@ class _BookingPageState extends State<BookingPage> {
         child: Column(
           children: [
             Container(
-                clipBehavior: Clip.hardEdge,
-                height: W * .12,
-                decoration: BoxDecoration(color: AppColors.formColor),
+                height: W * .13,
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade400, width: 0),
+                    color: AppColors.formColor),
                 child: TabBar(
                   dividerHeight: 0,
                   indicatorSize: TabBarIndicatorSize.tab,

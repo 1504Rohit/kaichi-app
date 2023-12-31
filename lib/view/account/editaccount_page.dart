@@ -91,7 +91,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   child: Text(
                     'Personal Information',
                     style: GoogleFonts.poppins(
-                        fontSize: W * .048,
+                        fontSize: W * .042,
                         fontWeight: FontWeight.w600,
                         color: Colors.black),
                   ),
@@ -110,7 +110,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 CustomCard.customCard3('Phone Number', '+91 1234567890')
               ],
             ),
-            StyleButton.loginLike('EDIT PROFILE', AppColors.buttonColor)
+            StyleButton.loginLike(
+                context, () {}, 'EDIT PROFILE', AppColors.buttonColor)
           ],
         ),
       ),

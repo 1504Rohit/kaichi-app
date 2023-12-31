@@ -6,6 +6,7 @@ import 'package:kaichi_user/utils/bottomsheet/bottom_sheet.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/utils/custom%20card/custom_card.dart';
 import 'package:kaichi_user/view/notification_page.dart';
+import 'package:kaichi_user/view/search_page.dart';
 
 class AllSalonPage extends StatefulWidget {
   const AllSalonPage({super.key});
@@ -30,7 +31,7 @@ class _AllSalonPageState extends State<AllSalonPage> {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: W * .060, vertical: W * .020),
+                    horizontal: W * .040, vertical: W * .020),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -107,10 +108,10 @@ class _AllSalonPageState extends State<AllSalonPage> {
                                 Flexible(
                                   flex: 1,
                                   child: Container(
-                                    height: W * .055,
+                                    height: W * .048,
                                     decoration: const BoxDecoration(
                                         image: DecorationImage(
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fitHeight,
                                             image: AssetImage(
                                               'assets/search.png',
                                             ))),
@@ -121,19 +122,29 @@ class _AllSalonPageState extends State<AllSalonPage> {
                                   child: Container(
                                     height: W * .1,
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: W * .02),
+                                        horizontal: W * .01),
                                     child: Align(
                                       alignment: Alignment.topCenter,
                                       child: TextFormField(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      const SearchPage()));
+                                        },
                                         maxLines: 1,
                                         cursorColor: Colors.grey.shade400,
                                         decoration: InputDecoration(
+                                            contentPadding:
+                                                EdgeInsets.symmetric(
+                                                    vertical: W * .030),
                                             border: InputBorder.none,
                                             hintText:
                                                 'Search location & services',
                                             hintStyle: GoogleFonts.poppins(
                                                 color: Colors.grey.shade300,
-                                                fontSize: W * .036,
+                                                fontSize: W * .035,
                                                 fontWeight: FontWeight.w500)),
                                         style: GoogleFonts.poppins(
                                             color: Colors.grey.shade700,
@@ -146,10 +157,10 @@ class _AllSalonPageState extends State<AllSalonPage> {
                                 Flexible(
                                   flex: 1,
                                   child: Container(
-                                    height: W * .06,
+                                    height: W * .045,
                                     decoration: const BoxDecoration(
                                         image: DecorationImage(
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fitHeight,
                                             image:
                                                 AssetImage('assets/path.png'))),
                                   ),
@@ -168,7 +179,7 @@ class _AllSalonPageState extends State<AllSalonPage> {
       body: Column(
         children: [
           SizedBox(
-            height: W * .040,
+            height: W * .050,
           ),
           SizedBox(
             height: W * .096,
@@ -192,7 +203,7 @@ class _AllSalonPageState extends State<AllSalonPage> {
           Expanded(
             child: Container(
               child: ListView(
-                padding: EdgeInsets.only(top: W * .040),
+                padding: EdgeInsets.only(top: W * .050),
                 scrollDirection: Axis.vertical,
                 children: [
                   CustomCard.customCard1(

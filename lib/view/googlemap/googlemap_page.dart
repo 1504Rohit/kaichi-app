@@ -127,18 +127,6 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
     });
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // getLocationUpdates();
-  //   // getLocationUpdates().then((_) => {
-  //   //       getPolylinePoints().then((coordinates) => {
-  //   //             generatePolyLineFromPoints(coordinates),
-  //   //           })
-  //   //     });
-  //   loadData();
-  // }
-
   loadData() async {
     final Uint8List markerIcon =
         await getBytesFromAssets('assets/pin.png', 100);

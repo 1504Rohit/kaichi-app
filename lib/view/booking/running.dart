@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/utils/custom%20card/custom_card.dart';
 
@@ -6,6 +7,7 @@ class Running {
   static Widget running() {
     double W = Mq.w;
     return Container(
+      color: AppColors.bodyColor,
       child: ListView(
         padding: const EdgeInsets.only(top: 20),
         children: [

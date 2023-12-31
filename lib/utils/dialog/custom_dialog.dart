@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 
@@ -15,8 +16,8 @@ class CustomDialog {
               ),
               backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
               child: SizedBox(
-                height: W * .438,
-                width: W * .650,
+                height: W * .538,
+                width: W * .750,
                 child: Stack(
                   children: [
                     Align(
@@ -27,7 +28,7 @@ class CustomDialog {
                             },
                             icon: Icon(
                               Icons.close,
-                              size: W * .040,
+                              size: W * .050,
                             ))),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: W * .040),
@@ -38,12 +39,12 @@ class CustomDialog {
                           Text(
                             heading,
                             style: GoogleFonts.poppins(
-                                fontSize: W * .038,
+                                fontSize: W * .046,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black),
                           ),
                           SizedBox(
-                            height: W * .020,
+                            height: W * .040,
                           ),
                           Text(
                             sub,
@@ -54,9 +55,9 @@ class CustomDialog {
                                 color: Colors.black),
                           ),
                           SizedBox(
-                            height: W * .020,
+                            height: W * .080,
                           ),
-                          StyleButton.loginLike(btn, btnclr)
+                          StyleButton.loginLike(context, () {}, btn, btnclr)
                         ],
                       ),
                     ),
@@ -67,7 +68,7 @@ class CustomDialog {
   }
 
   static Future<dynamic> custdialogConfirm(BuildContext context, String heading,
-      String sub, String btn, Color btnclr) {
+      String sub1, String title, String sub, String btn, Color btnclr) {
     double W = Mq.w;
     return showDialog<String>(
         context: context,
@@ -101,18 +102,40 @@ class CustomDialog {
                                   color: Colors.black),
                             ),
                           ),
-                          Text(
-                            sub,
+                          RichText(
                             textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                                fontSize: W * .038,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black),
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: sub1,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: W * .033,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black),
+                                ),
+                                TextSpan(
+                                  text: title,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: W * .033,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.buttonColor),
+                                ),
+                                TextSpan(
+                                  text: sub,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: W * .033,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black),
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(
                             height: W * .020,
                           ),
-                          StyleButton.loginLike(btn, btnclr)
+                          StyleButton.loginLike(context, () {
+                            print('hello');
+                          }, btn, btnclr)
                         ],
                       ),
                     ),

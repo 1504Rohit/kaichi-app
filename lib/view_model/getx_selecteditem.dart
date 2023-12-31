@@ -6,15 +6,12 @@ class SelectedItem extends GetxController {
 
   RxList<ItemList> items = [
     ItemList('Haircut & Shave', 'assets/Rectangle 3.png', false, 40, 40),
-    ItemList('Haircut & Beard Grooming', 'assets/Rectangle 3 (1).png', false,
-        40, 40),
-    ItemList('Haircut & Anti-Pollution Cleanup', 'assets/Rectangle 3 (2).png',
-        false, 40, 40),
+    ItemList('Haircut & Beard...', 'assets/Rectangle 3 (1).png', false, 40, 40),
+    ItemList('Haircut & An...', 'assets/Rectangle 3 (2).png', false, 40, 40),
     ItemList('Haircut & Shave', 'assets/Rectangle 3.png', false, 40, 40),
-    ItemList('Haircut & Beard Grooming', 'assets/Rectangle 3 (1).png', false,
-        40, 40),
-    ItemList('Haircut & Anti-Pollution Cleanup', 'assets/Rectangle 3 (2).png',
-        false, 40, 40),
+    ItemList('Haircut & Beard...', 'assets/Rectangle 3 (1).png', false, 40, 40),
+    ItemList(
+        'Haircut & Anti-P...', 'assets/Rectangle 3 (2).png', false, 40, 40),
   ].obs;
 
   RxList item1 = [].obs;

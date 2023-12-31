@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/utils/dialog/custom_dialog.dart';
+import 'package:kaichi_user/view/authentication/login_page.dart';
+import 'package:kaichi_user/view_model/getx_appointment.dart';
+import 'package:kaichi_user/view_model/getx_filter.dart';
+import 'package:kaichi_user/view_model/getx_review.dart';
 
 class CustomBottomSheet {
   static Future<dynamic> bottomsheetFilter(
     BuildContext context,
   ) {
+    FilterSheet filterSheet = Get.put(FilterSheet());
     return showModalBottomSheet(
         context: context,
         builder: (builder) {
           double W = Mq.w;
           return Container(
-            height: 547.0,
             decoration: const BoxDecoration(
               color: Color.fromRGBO(255, 255, 255, 1),
             ),
@@ -22,9 +27,9 @@ class CustomBottomSheet {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: W * .116,
+                  height: W * .146,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: W * .040),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,18 +42,18 @@ class CustomBottomSheet {
                               },
                               child: Icon(
                                 Icons.close,
-                                size: W * .040,
+                                size: W * .050,
                                 color: Colors.black,
                               )),
                         ),
                         Flexible(
-                          flex: 6,
+                          flex: 8,
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
                               'Sort/Filters',
                               style: GoogleFonts.poppins(
-                                  fontSize: W * .036,
+                                  fontSize: W * .042,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.background),
                             ),
@@ -61,7 +66,7 @@ class CustomBottomSheet {
                             child: Text(
                               'Clear all',
                               style: GoogleFonts.poppins(
-                                  fontSize: W * .028,
+                                  fontSize: W * .032,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.buttonColor),
                             ),
@@ -71,74 +76,151 @@ class CustomBottomSheet {
                     ),
                   ),
                 ),
-                const Divider(),
-                Row(
-                  children: [
-                    Flexible(
-                      flex: 2,
-                      child: Container(
-                        color: const Color.fromRGBO(242, 242, 245, 1),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: W * .116,
-                              child: Center(
-                                child: Text(
-                                  'Sort',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: W * .028,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.buttonColor),
+                Divider(
+                  height: W * .005,
+                ),
+                Obx(() => Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          flex: 2,
+                          child: Container(
+                            height: W * 1.095,
+                            color: const Color.fromRGBO(242, 242, 245, 1),
+                            child: Column(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    filterSheet.PageNo.value = 0;
+                                  },
+                                  child: Container(
+                                    height: W * .146,
+                                    color: filterSheet.PageNo.value == 0
+                                        ? Colors.white
+                                        : Color.fromRGBO(242, 242, 245, 1),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: W * .060),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          'Sort',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: W * .038,
+                                              fontWeight: FontWeight.w600,
+                                              color:
+                                                  filterSheet.PageNo.value == 0
+                                                      ? AppColors.buttonColor
+                                                      : Colors.black),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            const Divider(),
-                            SizedBox(
-                              height: W * .116,
-                              child: Center(
-                                child: Text(
-                                  'Review',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: W * .028,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
+                                Divider(
+                                  height: W * .005,
                                 ),
-                              ),
-                            ),
-                            const Divider(),
-                            SizedBox(
-                              height: W * .116,
-                              child: Center(
-                                child: Text(
-                                  'Gender',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: W * .028,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
+                                InkWell(
+                                  onTap: () {
+                                    filterSheet.PageNo.value = 1;
+                                  },
+                                  child: Container(
+                                    height: W * .146,
+                                    color: filterSheet.PageNo.value == 1
+                                        ? Colors.white
+                                        : Color.fromRGBO(242, 242, 245, 1),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: W * .060),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          'Review',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: W * .038,
+                                              fontWeight: FontWeight.w600,
+                                              color:
+                                                  filterSheet.PageNo.value == 1
+                                                      ? AppColors.buttonColor
+                                                      : Colors.black),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            const Divider(),
-                            SizedBox(
-                              height: W * .116,
-                              child: Center(
-                                child: Text(
-                                  'Distance',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: W * .028,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
+                                Divider(
+                                  height: W * .005,
                                 ),
-                              ),
+                                InkWell(
+                                  onTap: () {
+                                    filterSheet.PageNo.value = 2;
+                                  },
+                                  child: Container(
+                                    height: W * .146,
+                                    color: filterSheet.PageNo.value == 2
+                                        ? Colors.white
+                                        : Color.fromRGBO(242, 242, 245, 1),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: W * .060),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          'Gender',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: W * .038,
+                                              fontWeight: FontWeight.w600,
+                                              color:
+                                                  filterSheet.PageNo.value == 2
+                                                      ? AppColors.buttonColor
+                                                      : Colors.black),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Divider(
+                                  height: W * .005,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    filterSheet.PageNo.value = 3;
+                                  },
+                                  child: Container(
+                                    height: W * .146,
+                                    color: filterSheet.PageNo.value == 3
+                                        ? Colors.white
+                                        : Color.fromRGBO(242, 242, 245, 1),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: W * .060),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          'Distance',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: W * .038,
+                                              fontWeight: FontWeight.w600,
+                                              color:
+                                                  filterSheet.PageNo.value == 3
+                                                      ? AppColors.buttonColor
+                                                      : Colors.black),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Divider(
+                                  height: W * .005,
+                                ),
+                              ],
                             ),
-                            const Divider(),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Flexible(flex: 4, child: Container())
-                  ],
-                )
+                        Flexible(
+                            flex: 4,
+                            child: Align(
+                                alignment: Alignment.topCenter,
+                                child: filterSheet
+                                    .pages[filterSheet.PageNo.value]))
+                      ],
+                    ))
               ],
             ),
           );
@@ -164,23 +246,24 @@ class CustomBottomSheet {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         heading,
                         style: GoogleFonts.poppins(
-                            fontSize: W * .048,
+                            fontSize: W * .052,
                             fontWeight: FontWeight.w700,
                             color: AppColors.background),
                       ),
                       TextButton(
+                          style: TextButton.styleFrom(padding: EdgeInsets.zero),
                           onPressed: () {
                             Navigator.pop(context);
                           },
                           child: Icon(
                             Icons.close,
-                            size: W * .040,
+                            size: W * .060,
                           ))
                     ],
                   ),
@@ -188,19 +271,22 @@ class CustomBottomSheet {
                     height: W * .020,
                   ),
                   SizedBox(
-                    width: W * .516,
+                    width: W * .696,
                     child: Text(
                       sub,
                       style: GoogleFonts.poppins(
-                          fontSize: W * .028,
+                          fontSize: W * .036,
                           fontWeight: FontWeight.w500,
-                          color: AppColors.background),
+                          color: Colors.grey),
                     ),
                   ),
                   SizedBox(
                     height: W * .060,
                   ),
-                  StyleButton.loginLike(button, btn)
+                  StyleButton.loginLike(context, () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) => LoginPage()));
+                  }, button, btn)
                 ],
               ),
             ),
@@ -496,11 +582,9 @@ class CustomBottomSheet {
                         ],
                       ),
                     ),
-                    InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: StyleButton.loginLikeOutlineBlack('CANCEL'))
+                    StyleButton.loginLikeOutlineBlack(context, () {
+                      Navigator.pop(context);
+                    }, 'CANCEL')
                   ],
                 ),
               ));
@@ -509,116 +593,222 @@ class CustomBottomSheet {
 
   static Future<dynamic> bottomsSheetReview(BuildContext context,
       String heading, String sub, String button, Color btn) {
+    BottomReview bottomReview = Get.put(BottomReview());
     double W = Mq.w;
     return showModalBottomSheet(
         context: context,
+        isScrollControlled: true,
         builder: (builder) {
-          return Container(
-            height: W * 1.10,
-            decoration: const BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 1),
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(24),
-                    topRight: Radius.circular(24))),
-            child: Padding(
-              padding: EdgeInsets.all(W * .048),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.abc,
-                          size: W * .060,
-                          color: Colors.white,
+          return Obx(() => Wrap(
+                children: [
+                  Container(
+                    height: W * 1.10,
+                    decoration: const BoxDecoration(
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(24),
+                            topRight: Radius.circular(24))),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: W * .048, right: W * .048, top: W * .048),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  Icons.abc,
+                                  size: W * .060,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: W * .020,
+                                ),
+                                Text(
+                                  heading,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: W * .052,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColors.background),
+                                ),
+                                TextButton(
+                                    style: TextButton.styleFrom(
+                                        padding: EdgeInsets.zero),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Icon(
+                                      Icons.close,
+                                      size: W * .060,
+                                    ))
+                              ],
+                            ),
+                            SizedBox(
+                              height: W * .060,
+                            ),
+                            Text(
+                              'How was your experience?',
+                              style: GoogleFonts.poppins(
+                                  fontSize: W * .034,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black),
+                            ),
+                            SizedBox(
+                              height: W * .040,
+                            ),
+                            Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        bottomReview.number.value = 1;
+                                      },
+                                      child: bottomReview.number.value >= 1
+                                          ? Icon(
+                                              Icons.star,
+                                              size: W * .13,
+                                              color: AppColors.buttonColor,
+                                            )
+                                          : Icon(
+                                              Icons.star_border_outlined,
+                                              size: W * .13,
+                                              color: AppColors.background,
+                                            ),
+                                    ),
+                                    SizedBox(
+                                      width: W * .020,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        bottomReview.number.value = 2;
+                                      },
+                                      child: bottomReview.number.value >= 2
+                                          ? Icon(
+                                              Icons.star,
+                                              size: W * .13,
+                                              color: AppColors.buttonColor,
+                                            )
+                                          : Icon(
+                                              Icons.star_border_outlined,
+                                              size: W * .13,
+                                              color: AppColors.background,
+                                            ),
+                                    ),
+                                    SizedBox(
+                                      width: W * .020,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        bottomReview.number.value = 3;
+                                      },
+                                      child: bottomReview.number.value >= 3
+                                          ? Icon(
+                                              Icons.star,
+                                              size: W * .13,
+                                              color: AppColors.buttonColor,
+                                            )
+                                          : Icon(
+                                              Icons.star_border_outlined,
+                                              size: W * .13,
+                                              color: AppColors.background,
+                                            ),
+                                    ),
+                                    SizedBox(
+                                      width: W * .020,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        bottomReview.number.value = 4;
+                                      },
+                                      child: bottomReview.number.value >= 4
+                                          ? Icon(
+                                              Icons.star,
+                                              size: W * .13,
+                                              color: AppColors.buttonColor,
+                                            )
+                                          : Icon(
+                                              Icons.star_border_outlined,
+                                              size: W * .13,
+                                              color: AppColors.background,
+                                            ),
+                                    ),
+                                    SizedBox(
+                                      width: W * .020,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        bottomReview.number.value = 5;
+                                      },
+                                      child: bottomReview.number.value >= 5
+                                          ? Icon(
+                                              Icons.star,
+                                              size: W * .13,
+                                              color: AppColors.buttonColor,
+                                            )
+                                          : Icon(
+                                              Icons.star_border_outlined,
+                                              size: W * .13,
+                                              color: AppColors.background,
+                                            ),
+                                    ),
+                                    SizedBox(
+                                      width: W * .020,
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: W * .040,
+                            ),
+                            Text(
+                              'Review:',
+                              style: GoogleFonts.poppins(
+                                  fontSize: W * .034,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black),
+                            ),
+                            SizedBox(
+                              height: W * .040,
+                            ),
+                            TextFormField(
+                              maxLines: 6,
+                              style: GoogleFonts.poppins(
+                                  fontSize: W * .030,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey),
+                              decoration: InputDecoration(
+                                  hintText: 'Leave a Comment',
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: W * .020, horizontal: W * .030),
+                                  hintStyle: GoogleFonts.poppins(
+                                      fontSize: W * .030,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.grey),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  )),
+                            ),
+                            SizedBox(
+                              height: W * .040,
+                            ),
+                            StyleButton.loginLike(context, () {}, button, btn)
+                          ],
                         ),
-                        Text(
-                          heading,
-                          style: GoogleFonts.poppins(
-                              fontSize: W * .048,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.background),
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Icon(
-                              Icons.close,
-                              size: W * .040,
-                            ))
-                      ],
+                      ),
                     ),
-                    SizedBox(
-                      height: W * .060,
-                    ),
-                    Text(
-                      'How was your experience?',
-                      style: GoogleFonts.poppins(
-                          fontSize: W * .030,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black),
-                    ),
-                    SizedBox(
-                      height: W * .040,
-                    ),
-                    Row(
-                      children: [
-                        for (int i = 0; i < 5; i++)
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star_border_outlined,
-                                size: W * .1,
-                              ),
-                              SizedBox(
-                                width: W * .020,
-                              )
-                            ],
-                          )
-                      ],
-                    ),
-                    SizedBox(
-                      height: W * .040,
-                    ),
-                    Text(
-                      'Review:',
-                      style: GoogleFonts.poppins(
-                          fontSize: W * .030,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black),
-                    ),
-                    SizedBox(
-                      height: W * .040,
-                    ),
-                    TextFormField(
-                      maxLines: 4,
-                      decoration: InputDecoration(
-                          hintText: 'Leave a Comment',
-                          hintStyle: GoogleFonts.poppins(
-                              fontSize: W * .030,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          )),
-                    ),
-                    SizedBox(
-                      height: W * .030,
-                    ),
-                    StyleButton.loginLike(button, btn)
-                  ],
-                ),
-              ),
-            ),
-          );
+                  ),
+                ],
+              ));
         });
   }
 
   static Future<dynamic> bottomsSheetSelectDate(
       BuildContext context, String button, Color btn) {
+    Appoint appoint = Get.put(Appoint());
     double W = Mq.w;
     return showModalBottomSheet(
         context: context,
@@ -642,11 +832,14 @@ class CustomBottomSheet {
                     topLeft: Radius.circular(24),
                     topRight: Radius.circular(24))),
             child: Padding(
-              padding: EdgeInsets.all(W * .048),
+              padding: EdgeInsets.symmetric(horizontal: W * .048),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(
+                      height: W * .040,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -675,12 +868,15 @@ class CustomBottomSheet {
                     SizedBox(
                       height: W * .040,
                     ),
-                    Text(
-                      'Select Date & Time for the appointment',
-                      style: GoogleFonts.poppins(
-                          fontSize: W * .030,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Select Date & Time for the appointment',
+                        style: GoogleFonts.poppins(
+                            fontSize: W * .034,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey),
+                      ),
                     ),
                     SizedBox(
                       height: W * .040,
@@ -688,49 +884,58 @@ class CustomBottomSheet {
                     Text(
                       'When would you like your service?',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .030,
+                          fontSize: W * .034,
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                     ),
                     SizedBox(
-                      height: W * .040,
+                      height: W * .030,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        for (int i = 0; i < 5; i++)
-                          Row(
-                            children: [
-                              Container(
-                                height: W * .140,
-                                width: W * .140,
-                                decoration: BoxDecoration(
-                                    color: i == 3
-                                        ? AppColors.buttonColor
-                                        : Colors.white,
-                                    borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(color: Colors.black)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      list[i],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: W * .038,
-                                          fontWeight: FontWeight.w600),
+                    Obx(
+                      () => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          for (int i = 0; i < 5; i++)
+                            Row(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    appoint.index.value = i;
+                                  },
+                                  child: Container(
+                                    height: W * .180,
+                                    width: W * .160,
+                                    decoration: BoxDecoration(
+                                        color: appoint.index.value == i
+                                            ? AppColors.buttonColor
+                                            : Colors.white,
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(
+                                            color: Colors.grey.shade300)),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          list[i],
+                                          style: GoogleFonts.poppins(
+                                              fontSize: W * .038,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        Text(
+                                          '${20 + i}',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: W * .038,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      '${20 + i}',
-                                      style: GoogleFonts.poppins(
-                                          fontSize: W * .038,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          )
-                      ],
+                              ],
+                            )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: W * .040,
@@ -738,150 +943,131 @@ class CustomBottomSheet {
                     Text(
                       'When would you like your service?',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .030,
+                          fontSize: W * .034,
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                     ),
                     SizedBox(
-                      height: W * .040,
+                      height: W * .010,
                     ),
                     Container(
                         height: W * .4,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Obx(() => Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Container(
-                                  height: W * .094,
-                                  width: W * .440,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  child: Center(
-                                    child: Text(
-                                      list1[0],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: W * .038,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: W * .094,
-                                  width: W * .440,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  child: Center(
-                                    child: Text(
-                                      list1[1],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: W * .038,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                )
+                                for (int i = 0; i < 6; i += 2)
+                                  Row(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              appoint.index1.value = i;
+                                            },
+                                            child: Container(
+                                              height: W * .094,
+                                              width: W * .420,
+                                              decoration: BoxDecoration(
+                                                  color: appoint.index1.value ==
+                                                          i
+                                                      ? AppColors.buttonColor
+                                                      : AppColors.White,
+                                                  border: Border.all(
+                                                      color:
+                                                          Colors.grey.shade300),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          W * .015)),
+                                              child: Center(
+                                                child: Text(
+                                                  list1[i],
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: W * .038,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: W * .060,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              appoint.index1.value = i + 1;
+                                            },
+                                            child: Container(
+                                              height: W * .094,
+                                              width: W * .420,
+                                              decoration: BoxDecoration(
+                                                  color: appoint.index1.value ==
+                                                          i + 1
+                                                      ? AppColors.buttonColor
+                                                      : AppColors.White,
+                                                  border: Border.all(
+                                                      color:
+                                                          Colors.grey.shade300),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          W * .015)),
+                                              child: Center(
+                                                child: Text(
+                                                  list1[i + 1],
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: W * .038,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  )
                               ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  height: W * .094,
-                                  width: W * .440,
-                                  decoration: BoxDecoration(
-                                      color: AppColors.buttonColor,
-                                      border: Border.all(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  child: Center(
-                                    child: Text(
-                                      list1[2],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: W * .038,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: W * .094,
-                                  width: W * .440,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  child: Center(
-                                    child: Text(
-                                      list1[3],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: W * .038,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  height: W * .094,
-                                  width: W * .440,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  child: Center(
-                                    child: Text(
-                                      list1[4],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: W * .038,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: W * .094,
-                                  width: W * .440,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black),
-                                      borderRadius: BorderRadius.circular(12)),
-                                  child: Center(
-                                    child: Text(
-                                      list1[5],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: W * .038,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        )),
+                            ))),
                     Text(
                       'Appointment Date & Time',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .030,
+                          fontSize: W * .034,
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                     ),
-                    Text(
-                      '23 April  at  5:00 PM',
-                      style: GoogleFonts.poppins(
-                          fontSize: W * .030,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.green),
+                    Row(
+                      children: [
+                        Text(
+                          '23 April  at  5:00 PM',
+                          style: GoogleFonts.poppins(
+                              fontSize: W * .034,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.green),
+                        ),
+                        SizedBox(
+                          width: W * .020,
+                        ),
+                        Container(
+                          height: W * .04,
+                          width: W * .04,
+                          child: Image.asset('assets/Group 739.png'),
+                        )
+                      ],
                     ),
-                    InkWell(
-                        onTap: () {
-                          CustomDialog.custdialogConfirm(
-                              context,
-                              'Your Appointment Has Been Confirmed',
-                              'Your appointment with Woodlan Hills Salon at 11:00 AM on 17 August.',
-                              'VIEW APPOINTMENT',
-                              AppColors.buttonColor);
-                        },
-                        child: StyleButton.loginLike(button, btn))
+                    SizedBox(
+                      height: W * .020,
+                    ),
+                    StyleButton.loginLike(context, () {
+                      CustomDialog.custdialogConfirm(
+                          context,
+                          'Your Appointment Has Been Confirmed',
+                          'Your appointment with',
+                          ' Woodlands Hills Salon ',
+                          'on Wednesday, August 17, 2023 at 11:00 AM',
+                          'VIEW APPOINTMENT',
+                          AppColors.buttonColor);
+                    }, button, btn)
                   ],
                 ),
               ),

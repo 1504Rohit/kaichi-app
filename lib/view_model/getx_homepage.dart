@@ -14,7 +14,7 @@ class HomeLogic extends GetxController {
         height: W * .430,
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(W * .024),
             image: const DecorationImage(
                 fit: BoxFit.cover, image: AssetImage('assets/slide1.png'))),
         child: Stack(children: [
@@ -22,13 +22,13 @@ class HomeLogic extends GetxController {
             height: double.infinity,
             width: double.infinity,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(W * .024),
                 image: const DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage('assets/Frame 34316.png'))),
           ),
           Padding(
-            padding: EdgeInsets.all(W * .030),
+            padding: EdgeInsets.all(W * .040),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -39,14 +39,14 @@ class HomeLogic extends GetxController {
                     Text(
                       'The Beauty Hub',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .048,
+                          fontSize: W * .064,
                           fontWeight: FontWeight.w700,
                           color: AppColors.buttonColor),
                     ),
                     Text(
                       'Get Up To 40% OFF',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .028,
+                          fontSize: W * .032,
                           fontWeight: FontWeight.w500,
                           color: AppColors.White),
                     )
@@ -64,7 +64,7 @@ class HomeLogic extends GetxController {
         height: W * .430,
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(W * .024),
             image: const DecorationImage(
                 fit: BoxFit.cover, image: AssetImage('assets/slide1.png'))),
         child: Stack(children: [
@@ -72,13 +72,13 @@ class HomeLogic extends GetxController {
             height: double.infinity,
             width: double.infinity,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(W * .024),
                 image: const DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage('assets/Frame 34316.png'))),
           ),
           Padding(
-            padding: EdgeInsets.all(W * .030),
+            padding: EdgeInsets.all(W * .040),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -89,14 +89,14 @@ class HomeLogic extends GetxController {
                     Text(
                       'The Beauty Hub',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .048,
+                          fontSize: W * .064,
                           fontWeight: FontWeight.w700,
                           color: AppColors.buttonColor),
                     ),
                     Text(
                       'Get Up To 40% OFF',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .028,
+                          fontSize: W * .032,
                           fontWeight: FontWeight.w500,
                           color: AppColors.White),
                     )
@@ -114,7 +114,7 @@ class HomeLogic extends GetxController {
         height: W * .430,
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(W * .024),
             image: const DecorationImage(
                 fit: BoxFit.cover, image: AssetImage('assets/slide1.png'))),
         child: Stack(children: [
@@ -122,13 +122,13 @@ class HomeLogic extends GetxController {
             height: double.infinity,
             width: double.infinity,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(W * .024),
                 image: const DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage('assets/Frame 34316.png'))),
           ),
           Padding(
-            padding: EdgeInsets.all(W * .030),
+            padding: EdgeInsets.all(W * .040),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -139,14 +139,14 @@ class HomeLogic extends GetxController {
                     Text(
                       'The Beauty Hub',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .048,
+                          fontSize: W * .064,
                           fontWeight: FontWeight.w700,
                           color: AppColors.buttonColor),
                     ),
                     Text(
                       'Get Up To 40% OFF',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .028,
+                          fontSize: W * .032,
                           fontWeight: FontWeight.w500,
                           color: AppColors.White),
                     )
@@ -181,7 +181,7 @@ class HomeLogic extends GetxController {
                     image: AssetImage('assets/Frame 34316.png'))),
           ),
           Padding(
-            padding: EdgeInsets.all(W * .030),
+            padding: EdgeInsets.all(W * .040),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -192,14 +192,14 @@ class HomeLogic extends GetxController {
                     Text(
                       'The Beauty Hub',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .048,
+                          fontSize: W * .064,
                           fontWeight: FontWeight.w700,
                           color: AppColors.buttonColor),
                     ),
                     Text(
                       'Get Up To 40% OFF',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .028,
+                          fontSize: W * .032,
                           fontWeight: FontWeight.w500,
                           color: AppColors.White),
                     )
@@ -231,7 +231,7 @@ class HomeLogic extends GetxController {
                     image: AssetImage('assets/Frame 34316.png'))),
           ),
           Padding(
-            padding: EdgeInsets.all(W * .030),
+            padding: EdgeInsets.all(W * .040),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -242,14 +242,14 @@ class HomeLogic extends GetxController {
                     Text(
                       'The Beauty Hub',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .048,
+                          fontSize: W * .064,
                           fontWeight: FontWeight.w700,
                           color: AppColors.buttonColor),
                     ),
                     Text(
                       'Get Up To 40% OFF',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .028,
+                          fontSize: W * .032,
                           fontWeight: FontWeight.w500,
                           color: AppColors.White),
                     )
@@ -281,7 +281,7 @@ class HomeLogic extends GetxController {
                     image: AssetImage('assets/Frame 34316.png'))),
           ),
           Padding(
-            padding: EdgeInsets.all(W * .030),
+            padding: EdgeInsets.all(W * .040),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -292,14 +292,14 @@ class HomeLogic extends GetxController {
                     Text(
                       'The Beauty Hub',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .048,
+                          fontSize: W * .064,
                           fontWeight: FontWeight.w700,
                           color: AppColors.buttonColor),
                     ),
                     Text(
                       'Get Up To 40% OFF',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .028,
+                          fontSize: W * .032,
                           fontWeight: FontWeight.w500,
                           color: AppColors.White),
                     )

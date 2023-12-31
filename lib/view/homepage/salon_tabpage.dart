@@ -10,7 +10,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:kaichi_user/view_model/getx_homepage.dart';
 
 class SalonTab {
-  static Widget salonTab() {
+  static Widget salonTab(BuildContext context) {
     double W = Mq.w;
     HomeLogic homeLogic = Get.put(HomeLogic());
     return SingleChildScrollView(
@@ -47,14 +47,14 @@ class SalonTab {
                   Text(
                     'Daily Deals',
                     style: GoogleFonts.poppins(
-                        fontSize: W * .040,
+                        fontSize: W * .044,
                         fontWeight: FontWeight.w700,
                         color: AppColors.background),
                   ),
                   Text(
                     'See all >',
                     style: GoogleFonts.poppins(
-                        fontSize: W * .032,
+                        fontSize: W * .036,
                         fontWeight: FontWeight.w500,
                         color: AppColors.buttonColor),
                   )
@@ -65,7 +65,7 @@ class SalonTab {
           SizedBox(
             height: W * .420,
             child: ListView(
-              padding: EdgeInsets.only(left: W * .060),
+              padding: EdgeInsets.only(left: W * .060, right: W * .060),
               scrollDirection: Axis.horizontal,
               children: [
                 CustomCard.customCard(
@@ -75,7 +75,13 @@ class SalonTab {
                     'assets/Rectangle 532.png'),
                 SizedBox(width: W * .040),
                 CustomCard.customCard('40% OFF ', 'on all\ntypes of Haircuts',
-                    'By Floyd Barber Shop', 'assets/Rectangle 532 (1).png')
+                    'By Floyd Barber Shop', 'assets/Rectangle 532 (1).png'),
+                SizedBox(width: W * .040),
+                CustomCard.customCard(
+                    '50% Discount ',
+                    'on All\nkinds of Massage',
+                    'By Port Sans Massage Center',
+                    'assets/Rectangle 532.png'),
               ],
             ),
           ),
@@ -90,14 +96,14 @@ class SalonTab {
                   Text(
                     'Popular Near You',
                     style: GoogleFonts.poppins(
-                        fontSize: W * .040,
+                        fontSize: W * .044,
                         fontWeight: FontWeight.w700,
                         color: AppColors.background),
                   ),
                   Text(
                     'See all >',
                     style: GoogleFonts.poppins(
-                        fontSize: W * .032,
+                        fontSize: W * .036,
                         fontWeight: FontWeight.w500,
                         color: AppColors.buttonColor),
                   )
@@ -123,6 +129,227 @@ class SalonTab {
                 StyleButton.button('Basic Salons', AppColors.White),
               ],
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: W * .060),
+            child: ListView(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              children: [
+                CustomCard.customCard1(
+                    context,
+                    'assets/running.png',
+                    'Woodlands Hills Salon',
+                    'Beuty salon - Near PalletMall, Woodland Hills',
+                    '4.8 ( 1900 ratings )'),
+                SizedBox(
+                  height: W * .040,
+                ),
+                CustomCard.customCard1(
+                    context,
+                    'assets/salon.png',
+                    'Woodlands Hills Salon',
+                    'Beuty salon - Near PalletMall, Woodland Hills',
+                    '4.8 ( 1900 ratings )'),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: W * .060,
+            ),
+            child: SizedBox(
+              height: W * .080,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Popular Service',
+                    style: GoogleFonts.poppins(
+                        fontSize: W * .044,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.background),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: W * .130, vertical: W * .080),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: W * .095,
+                          backgroundImage: AssetImage('assets/Rectangle 2.png'),
+                        ),
+                        SizedBox(
+                          height: W * .020,
+                        ),
+                        Text(
+                          'Haircut',
+                          style: GoogleFonts.poppins(
+                              color: AppColors.background,
+                              fontSize: W * .032,
+                              fontWeight: FontWeight.w600),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: W * .095,
+                          backgroundImage:
+                              AssetImage('assets/Rectangle 2 (1).png'),
+                        ),
+                        SizedBox(
+                          height: W * .020,
+                        ),
+                        Text(
+                          'Shave',
+                          style: GoogleFonts.poppins(
+                              color: AppColors.background,
+                              fontSize: W * .032,
+                              fontWeight: FontWeight.w600),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: W * .095,
+                          backgroundImage:
+                              AssetImage('assets/Rectangle 2 (2).png'),
+                        ),
+                        SizedBox(
+                          height: W * .020,
+                        ),
+                        Text(
+                          'Facial',
+                          style: GoogleFonts.poppins(
+                              color: AppColors.background,
+                              fontSize: W * .032,
+                              fontWeight: FontWeight.w600),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: W * .040,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: W * .095,
+                          backgroundImage:
+                              AssetImage('assets/Rectangle 2 (3).png'),
+                        ),
+                        SizedBox(
+                          height: W * .020,
+                        ),
+                        Text(
+                          'Bleach',
+                          style: GoogleFonts.poppins(
+                              color: AppColors.background,
+                              fontSize: W * .032,
+                              fontWeight: FontWeight.w600),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: W * .095,
+                          backgroundImage:
+                              AssetImage('assets/Rectangle 2 (4).png'),
+                        ),
+                        SizedBox(
+                          height: W * .020,
+                        ),
+                        Text(
+                          'Waxing',
+                          style: GoogleFonts.poppins(
+                              color: AppColors.background,
+                              fontSize: W * .032,
+                              fontWeight: FontWeight.w600),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: W * .095,
+                          backgroundImage:
+                              AssetImage('assets/Rectangle 2 (5).png'),
+                        ),
+                        SizedBox(
+                          height: W * .020,
+                        ),
+                        Text(
+                          'Facial',
+                          style: GoogleFonts.poppins(
+                              color: AppColors.background,
+                              fontSize: W * .032,
+                              fontWeight: FontWeight.w600),
+                        )
+                      ],
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: W * .060,
+            ),
+            child: SizedBox(
+              height: W * .080,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Recently Visited',
+                    style: GoogleFonts.poppins(
+                        fontSize: W * .044,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.background),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: W * .030,
+          ),
+          SizedBox(
+            height: W * .320,
+            child: ListView(
+              padding: EdgeInsets.only(left: W * .060, right: W * .060),
+              scrollDirection: Axis.horizontal,
+              children: [
+                CustomCard.customcard6(
+                    'assets/Rectangle 540.png', 'Raphael Beauty Salon'),
+                SizedBox(width: W * .040),
+                CustomCard.customcard6(
+                    'assets/Rectangle 541.png', 'Mike Spa Center'),
+                SizedBox(width: W * .040),
+                CustomCard.customcard6(
+                    'assets/Rectangle 541.png', 'Mike Spa Center'),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: W * .200,
           )
         ],
       ),

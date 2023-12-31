@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/view/checkout_page.dart';
+import 'package:kaichi_user/view/search_page.dart';
 import 'package:kaichi_user/view_model/getx_selecteditem.dart';
 
 class SelectItemPage extends StatefulWidget {
@@ -41,43 +42,52 @@ class _SelectItemPageState extends State<SelectItemPage> {
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: W * .060),
-            child: SizedBox(
-              height: W * .060,
-              child: Image.asset(
-                'assets/search.png',
-                color: Colors.black,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const SearchPage()));
+              },
+              child: SizedBox(
+                height: W * .060,
+                child: Image.asset(
+                  'assets/search.png',
+                  color: Colors.black,
+                ),
               ),
             ),
           )
         ],
       ),
-      bottomNavigationBar: Container(
-        height: W * .180,
-        color: AppColors.White,
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: W * .060),
-            child: Container(
-              height: W * .140,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: AppColors.buttonColor,
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: W * .060),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: W * .28,
-                      child: Row(
+      bottomNavigationBar: InkWell(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => CheckOutPage()));
+        },
+        child: Container(
+          height: W * .180,
+          color: AppColors.White,
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: W * .060),
+              child: Container(
+                height: W * .140,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(W * .018),
+                  color: AppColors.buttonColor,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: W * .030),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
                             height: W * .089,
                             width: W * .089,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(9),
+                                borderRadius: BorderRadius.circular(W * .015),
                                 border: Border.all(
                                   color: Colors.black,
                                 )),
@@ -91,6 +101,9 @@ class _SelectItemPageState extends State<SelectItemPage> {
                                     color: Colors.black),
                               ),
                             )),
+                          ),
+                          SizedBox(
+                            width: W * .020,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,21 +129,23 @@ class _SelectItemPageState extends State<SelectItemPage> {
                           )
                         ],
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => CheckOutPage()));
-                      },
-                      child: Text(
-                        'Continue',
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .042,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => CheckOutPage()));
+                        },
+                        child: Text(
+                          'Continue',
+                          style: GoogleFonts.poppins(
+                              fontSize: W * .042,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -140,190 +155,208 @@ class _SelectItemPageState extends State<SelectItemPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: W * .060),
-              child: Container(
-                width: double.infinity,
-                color: AppColors.White,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: W * .060),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Text(
-                          'Item selected',
-                          style: GoogleFonts.poppins(
-                              fontSize: W * .042,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black),
-                        ),
-                      ),
-                      Obx(() => ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: selectedItem.item1.length,
-                          itemBuilder: (context, i) {
-                            return Column(
-                              children: [
-                                Container(
-                                  height: W * .3,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Container(
-                                            height: W * .2,
-                                            width: W * .2,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(12),
-                                                image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: AssetImage(
-                                                        selectedItem.item1[i]
-                                                            .bgImage))),
-                                          ),
-                                          SizedBox(
-                                            width: W * .020,
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: W * .030),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: W * .4,
-                                                      child: Text(
-                                                        selectedItem
-                                                            .item1[i].details,
-                                                        style:
-                                                            GoogleFonts.poppins(
-                                                                fontSize:
-                                                                    W * .038,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                color: Colors
-                                                                    .black),
+            Obx(
+              () => selectedItem.item1.length == 0
+                  ? Container()
+                  : Padding(
+                      padding: EdgeInsets.symmetric(vertical: W * .040),
+                      child: Container(
+                        width: double.infinity,
+                        color: AppColors.White,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: W * .060),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: W * .060,
+                              ),
+                              Container(
+                                child: Text(
+                                  'Item selected',
+                                  style: GoogleFonts.poppins(
+                                      fontSize: W * .042,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black),
+                                ),
+                              ),
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: selectedItem.item1.length,
+                                  itemBuilder: (context, i) {
+                                    return Column(
+                                      children: [
+                                        Container(
+                                          height: W * .3,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Container(
+                                                    height: W * .2,
+                                                    width: W * .2,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12),
+                                                        image: DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: AssetImage(
+                                                                selectedItem
+                                                                    .item1[i]
+                                                                    .bgImage))),
+                                                  ),
+                                                  SizedBox(
+                                                    width: W * .020,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            vertical: W * .030),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Container(
+                                                              width: W * .4,
+                                                              child: Text(
+                                                                selectedItem
+                                                                    .item1[i]
+                                                                    .details,
+                                                                style: GoogleFonts.poppins(
+                                                                    fontSize: W *
+                                                                        .038,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    color: Colors
+                                                                        .black),
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              '\$ ${selectedItem.item1[i].Price}',
+                                                              style: GoogleFonts.poppins(
+                                                                  fontSize:
+                                                                      W * .038,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  color: AppColors
+                                                                      .buttonColor),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Container(
+                                                              height: W * .045,
+                                                              width: W * .045,
+                                                              child: Image.asset(
+                                                                  'assets/time.png'),
+                                                            ),
+                                                            Text(
+                                                              '${selectedItem.item1[i].time} Mins',
+                                                              style: GoogleFonts.poppins(
+                                                                  fontSize:
+                                                                      W * .038,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  color: Colors
+                                                                      .grey),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: W * .050),
+                                                child: Card(
+                                                  elevation: 2,
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      selectedItem.item1.remove(
+                                                          selectedItem
+                                                              .item1[i]);
+                                                      // selectedItem.items
+                                                      //     .add(selectedItem.item1[i]);
+                                                    },
+                                                    child: Container(
+                                                      height: W * .070,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    W * .012),
+                                                        color: AppColors
+                                                            .buttonColor,
+                                                      ),
+                                                      child: Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal:
+                                                                    W * .020),
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              'Select',
+                                                              style: GoogleFonts.poppins(
+                                                                  fontSize:
+                                                                      W * .038,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
+                                                            Icon(
+                                                              Icons.done,
+                                                              size: W * .040,
+                                                              color:
+                                                                  Colors.black,
+                                                            )
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
-                                                    Text(
-                                                      '\$ ${selectedItem.item1[i].Price}',
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                              fontSize:
-                                                                  W * .038,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              color: AppColors
-                                                                  .buttonColor),
-                                                    ),
-                                                  ],
+                                                  ),
                                                 ),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                      height: W * .045,
-                                                      width: W * .045,
-                                                      child: Image.asset(
-                                                          'assets/time.png'),
-                                                    ),
-                                                    Text(
-                                                      '${selectedItem.item1[i].time} Mins',
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                              fontSize:
-                                                                  W * .038,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              color:
-                                                                  Colors.grey),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: W * .050),
-                                        child: Card(
-                                          elevation: 2,
-                                          child: InkWell(
-                                            onTap: () {
-                                              selectedItem.item1.remove(
-                                                  selectedItem.item1[i]);
-                                              // selectedItem.items
-                                              //     .add(selectedItem.item1[i]);
-                                            },
-                                            child: Container(
-                                              height: W * .070,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                color: AppColors.buttonColor,
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: W * .020),
-                                                child: Row(
-                                                  children: [
-                                                    Text(
-                                                      'Select',
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                              fontSize:
-                                                                  W * .038,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              color:
-                                                                  Colors.black),
-                                                    ),
-                                                    Icon(
-                                                      Icons.done,
-                                                      size: W * .040,
-                                                      color: Colors.black,
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
+                                              )
+                                            ],
                                           ),
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Divider(),
-                              ],
-                            );
-                          }))
-                    ],
-                  ),
-                ),
-              ),
+                                        i >= selectedItem.item1.length - 1
+                                            ? Container()
+                                            : Divider(),
+                                      ],
+                                    );
+                                  })
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: W * .060),
+              padding: EdgeInsets.symmetric(vertical: W * .020),
               child: Container(
                 width: double.infinity,
                 color: AppColors.White,
@@ -332,6 +365,9 @@ class _SelectItemPageState extends State<SelectItemPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(
+                        height: W * .060,
+                      ),
                       Container(
                         child: Text(
                           'Recommended (5)',
@@ -380,7 +416,7 @@ class _SelectItemPageState extends State<SelectItemPage> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsets.symmetric(
-                                                      vertical: W * .030),
+                                                      vertical: W * .055),
                                                   child: Column(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
@@ -468,9 +504,13 @@ class _SelectItemPageState extends State<SelectItemPage> {
                                                   child: Container(
                                                     height: W * .070,
                                                     decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color: AppColors
+                                                              .buttonColor,
+                                                          width: 0.5),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              8),
+                                                              W * .012),
                                                       color: AppColors.White,
                                                     ),
                                                     child: Padding(
@@ -507,7 +547,9 @@ class _SelectItemPageState extends State<SelectItemPage> {
                                           ],
                                         ),
                                       ),
-                                      Divider(),
+                                      i >= selectedItem.items.length - 1
+                                          ? Container()
+                                          : Divider(),
                                     ],
                                   );
                                 }),

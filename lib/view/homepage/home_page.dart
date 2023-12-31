@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
@@ -6,6 +7,7 @@ import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/view/homepage/petsalon_tabpage.dart';
 import 'package:kaichi_user/view/homepage/salon_tabpage.dart';
 import 'package:kaichi_user/view/notification_page.dart';
+import 'package:kaichi_user/view/search_page.dart';
 import 'package:kaichi_user/view_model/getx_homepage.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,11 +21,15 @@ class _HomePageState extends State<HomePage> {
   HomeLogic homeController = Get.put(HomeLogic());
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: AppColors.background,
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light));
     double W = Mq.w;
     return Scaffold(
       backgroundColor: AppColors.bodyColor,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(W * .248),
+        preferredSize: Size.fromHeight(W * .260),
         child: Container(
           decoration: BoxDecoration(color: AppColors.background),
           child: SafeArea(
@@ -52,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           '15A, James Street',
                           style: GoogleFonts.poppins(
-                              fontSize: W * .040,
+                              fontSize: W * .044,
                               fontWeight: FontWeight.w600,
                               color: AppColors.White),
                         )
@@ -142,10 +148,10 @@ class _HomePageState extends State<HomePage> {
                                 Flexible(
                                   flex: 1,
                                   child: Container(
-                                    height: W * .055,
+                                    height: W * .048,
                                     decoration: const BoxDecoration(
                                         image: DecorationImage(
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fitHeight,
                                             image: AssetImage(
                                               'assets/search.png',
                                             ))),
@@ -156,19 +162,29 @@ class _HomePageState extends State<HomePage> {
                                   child: Container(
                                     height: W * .1,
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: W * .02),
+                                        horizontal: W * .01),
                                     child: Align(
                                       alignment: Alignment.topCenter,
                                       child: TextFormField(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      const SearchPage()));
+                                        },
                                         maxLines: 1,
                                         cursorColor: Colors.grey.shade400,
                                         decoration: InputDecoration(
+                                            contentPadding:
+                                                EdgeInsets.symmetric(
+                                                    vertical: W * .030),
                                             border: InputBorder.none,
                                             hintText:
                                                 'Search location & services',
                                             hintStyle: GoogleFonts.poppins(
                                                 color: Colors.grey.shade300,
-                                                fontSize: W * .036,
+                                                fontSize: W * .035,
                                                 fontWeight: FontWeight.w500)),
                                         style: GoogleFonts.poppins(
                                             color: Colors.grey.shade700,
@@ -181,10 +197,10 @@ class _HomePageState extends State<HomePage> {
                                 Flexible(
                                   flex: 1,
                                   child: Container(
-                                    height: W * .06,
+                                    height: W * .045,
                                     decoration: const BoxDecoration(
                                         image: DecorationImage(
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fitHeight,
                                             image:
                                                 AssetImage('assets/path.png'))),
                                   ),
@@ -213,7 +229,8 @@ class _HomePageState extends State<HomePage> {
                   clipBehavior: Clip.hardEdge,
                   height: W * .11,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.grey.shade200, width: 1),
+                      borderRadius: BorderRadius.circular(W * .024),
                       color: AppColors.formColor),
                   child: TabBar(
                     dividerHeight: 0,
@@ -227,7 +244,7 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             'Salon',
                             style: GoogleFonts.poppins(
-                                fontSize: W * .035,
+                                fontSize: W * .039,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.background),
                           ),
@@ -236,9 +253,9 @@ class _HomePageState extends State<HomePage> {
                       Tab(
                         child: Center(
                           child: Text(
-                            'SalonPet Salon',
+                            'Pet Salon',
                             style: GoogleFonts.poppins(
-                                fontSize: W * .035,
+                                fontSize: W * .039,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.background),
                           ),
@@ -252,7 +269,10 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
                 child: TabBarView(
-              children: [SalonTab.salonTab(), PetSalonTab.petsalonTab()],
+              children: [
+                SalonTab.salonTab(context),
+                PetSalonTab.petsalonTab(context)
+              ],
             ))
           ],
         ),

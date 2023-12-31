@@ -29,45 +29,45 @@ class _OnbordingPageState extends State<OnbordingPage> {
               logic.pageCount.value = value;
               print("${logic.pageCount.value}");
             },
-            itemCount: content.length,
+            itemCount: logic.content.length,
             controller: logic.controller.value,
             itemBuilder: (context, index) {
-              return Stack(
-                children: [
-                  Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                      opacity: 0.7,
-                      colorFilter: const ColorFilter.mode(
-                          Colors.black, BlendMode.dstATop),
-                      fit: BoxFit.cover,
-                      image: AssetImage(content[index].bgImage),
-                    )),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Column(
+              return Obx(() => Stack(
+                    children: [
+                      Container(
+                        height: double.infinity,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                          opacity: 0.7,
+                          colorFilter: const ColorFilter.mode(
+                              Colors.black, BlendMode.dstATop),
+                          fit: BoxFit.cover,
+                          image: AssetImage(logic.content[index].bgImage),
+                        )),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: W * .040, vertical: W * .15),
-                              child: Text(
-                                content[index].details,
-                                style: GoogleFonts.poppins(
-                                    fontSize: W * .082,
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.White),
-                              ),
-                            ),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: W * .040, vertical: W * .15),
+                                  child: Text(
+                                    logic.content[index].details,
+                                    style: GoogleFonts.poppins(
+                                        fontSize: W * .082,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.White),
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              );
+                        ),
+                      ),
+                    ],
+                  ));
             }),
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

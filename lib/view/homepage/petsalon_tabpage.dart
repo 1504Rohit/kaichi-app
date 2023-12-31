@@ -10,7 +10,7 @@ import 'package:kaichi_user/utils/dot_indicator/dot_indicator.dart';
 import 'package:kaichi_user/view_model/getx_homepage.dart';
 
 class PetSalonTab {
-  static Widget petsalonTab() {
+  static Widget petsalonTab(BuildContext context) {
     double W = Mq.w;
     HomeLogic homeLogic = Get.put(HomeLogic());
     return SingleChildScrollView(
@@ -34,7 +34,7 @@ class PetSalonTab {
           ),
           Obx(
             () => DotIndicator.dots(
-                homeLogic.petPage.length, homeLogic.petPageNo.value),
+                homeLogic.pages1.length, homeLogic.pageNo1.value),
           ),
           Padding(
             padding:
@@ -47,14 +47,14 @@ class PetSalonTab {
                   Text(
                     'Daily Deals',
                     style: GoogleFonts.poppins(
-                        fontSize: W * .040,
+                        fontSize: W * .044,
                         fontWeight: FontWeight.w700,
                         color: AppColors.background),
                   ),
                   Text(
                     'See all >',
                     style: GoogleFonts.poppins(
-                        fontSize: W * .032,
+                        fontSize: W * .036,
                         fontWeight: FontWeight.w500,
                         color: AppColors.buttonColor),
                   )
@@ -65,7 +65,7 @@ class PetSalonTab {
           SizedBox(
             height: W * .420,
             child: ListView(
-              padding: EdgeInsets.only(left: W * .060),
+              padding: EdgeInsets.only(left: W * .060, right: W * .060),
               scrollDirection: Axis.horizontal,
               children: [
                 CustomCard.customCard(
@@ -75,7 +75,13 @@ class PetSalonTab {
                     'assets/pet2.png'),
                 SizedBox(width: W * .040),
                 CustomCard.customCard('40% OFF ', 'on all\ntypes of Haircuts',
-                    'By Floyd Barber Shop', 'assets/pet3.png')
+                    'By Floyd Barber Shop', 'assets/pet3.png'),
+                SizedBox(width: W * .040),
+                CustomCard.customCard(
+                    '50% Discount ',
+                    'on All\nkinds of Massage',
+                    'By Port Sans Massage Center',
+                    'assets/pet2.png'),
               ],
             ),
           ),
@@ -90,14 +96,14 @@ class PetSalonTab {
                   Text(
                     'Popular Near You',
                     style: GoogleFonts.poppins(
-                        fontSize: W * .040,
+                        fontSize: W * .044,
                         fontWeight: FontWeight.w700,
                         color: AppColors.background),
                   ),
                   Text(
                     'See all >',
                     style: GoogleFonts.poppins(
-                        fontSize: W * .032,
+                        fontSize: W * .036,
                         fontWeight: FontWeight.w500,
                         color: AppColors.buttonColor),
                   )
@@ -123,7 +129,31 @@ class PetSalonTab {
                 StyleButton.button('Basic Salons', AppColors.White),
               ],
             ),
-          )
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: W * .060),
+            child: ListView(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              children: [
+                CustomCard.customCard1(
+                    context,
+                    'assets/running.png',
+                    'Woodlands Hills Salon',
+                    'Beuty salon - Near PalletMall, Woodland Hills',
+                    '4.8 ( 1900 ratings )'),
+                SizedBox(
+                  height: W * .040,
+                ),
+                CustomCard.customCard1(
+                    context,
+                    'assets/salon.png',
+                    'Woodlands Hills Salon',
+                    'Beuty salon - Near PalletMall, Woodland Hills',
+                    '4.8 ( 1900 ratings )'),
+              ],
+            ),
+          ),
         ],
       ),
     );

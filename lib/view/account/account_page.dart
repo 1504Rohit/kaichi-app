@@ -180,8 +180,11 @@ class _AccountPageState extends State<AccountPage> {
               SizedBox(
                 height: W * .080,
                 child: const Center(
-                  child: Divider(
-                    color: Color.fromRGBO(178, 184, 190, 1),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Divider(
+                      color: Color.fromRGBO(178, 184, 190, 1),
+                    ),
                   ),
                 ),
               ),

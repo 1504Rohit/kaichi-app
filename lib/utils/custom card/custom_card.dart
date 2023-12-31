@@ -8,13 +8,13 @@ class CustomCard {
   static Widget customCard3(String qus, String ans) {
     double W = Mq.w;
     return Container(
-      height: W * .092,
+      height: Mq.h * .058,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(W * .018),
         color: const Color.fromRGBO(242, 242, 245, 1),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: W * .020),
+        padding: EdgeInsets.symmetric(horizontal: W * .030),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,19 +22,71 @@ class CustomCard {
             Text(
               qus,
               style: GoogleFonts.poppins(
-                  fontSize: W * .032,
+                  fontSize: W * .036,
                   fontWeight: FontWeight.w500,
                   color: Colors.black),
             ),
             Text(
               ans,
               style: GoogleFonts.poppins(
-                  fontSize: W * .032,
+                  fontSize: W * .036,
                   fontWeight: FontWeight.w500,
                   color: AppColors.buttonColor),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  static Widget customcard6(String pic, String title) {
+    return Container(
+      width: Mq.w * .450,
+      clipBehavior: Clip.hardEdge,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(Mq.w * .024)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              height: Mq.w * .220,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover, image: AssetImage(pic))),
+              child: Padding(
+                padding: EdgeInsets.all(Mq.w * .020),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    height: Mq.w * .055,
+                    width: Mq.w * .055,
+                    child: Image.asset('assets/Group 34359.png'),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: Mq.w * .100,
+            width: double.infinity,
+            color: AppColors.background,
+            child: Padding(
+              padding: EdgeInsets.all(Mq.w * .020),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  title,
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.White,
+                      fontSize: Mq.w * .034),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -52,8 +104,8 @@ class CustomCard {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: W * .048,
-            width: W * .048,
+            height: W * .075,
+            width: W * .075,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Color.fromRGBO(242, 242, 245, 1),
@@ -63,59 +115,72 @@ class CustomCard {
             ),
           ),
           SizedBox(
-            width: W * .030,
+            width: W * .020,
           ),
           Expanded(
             child: Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    head,
-                    style: GoogleFonts.poppins(
-                        fontSize: W * .034,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.background),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      head,
+                      style: GoogleFonts.poppins(
+                          fontSize: W * .034,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.background),
+                    ),
                   ),
                   SizedBox(
                     height: W * .012,
                   ),
-                  Text(
-                    sub,
-                    style: GoogleFonts.poppins(
-                        fontSize: W * .032,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.background),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      sub,
+                      style: GoogleFonts.poppins(
+                          fontSize: W * .032,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.background),
+                    ),
                   ),
                   SizedBox(
                     height: W * .020,
                   ),
-                  SizedBox(
-                    width: W * .434,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                          onPressed: onClickDelete,
-                          child: Text(
-                            'Delete',
-                            style: GoogleFonts.poppins(
-                                fontSize: W * .030,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.red),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SizedBox(
+                      width: W * .424,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                            onPressed: onClickDelete,
+                            style:
+                                TextButton.styleFrom(padding: EdgeInsets.zero),
+                            child: Text(
+                              'Delete',
+                              style: GoogleFonts.poppins(
+                                  fontSize: W * .036,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.red),
+                            ),
                           ),
-                        ),
-                        TextButton(
-                          onPressed: onClickEdit,
-                          child: Text(
-                            'Edit',
-                            style: GoogleFonts.poppins(
-                                fontSize: W * .030,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.buttonColor),
-                          ),
-                        )
-                      ],
+                          TextButton(
+                            onPressed: onClickEdit,
+                            style:
+                                TextButton.styleFrom(padding: EdgeInsets.zero),
+                            child: Text(
+                              'Edit',
+                              style: GoogleFonts.poppins(
+                                  fontSize: W * .036,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.buttonColor),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   )
                 ],
@@ -136,54 +201,61 @@ class CustomCard {
     double W = Mq.w;
     return Container(
       clipBehavior: Clip.hardEdge,
-      height: W * .244,
+      height: W * .284,
       decoration: BoxDecoration(
           color: const Color.fromRGBO(255, 255, 255, 1),
           borderRadius: BorderRadius.circular(12)),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Flexible(
-          flex: 1,
+          flex: 3,
           child: Padding(
-            padding: EdgeInsets.only(top: W * .040),
+            padding: EdgeInsets.only(
+              top: W * .030,
+            ),
             child: Container(
               child: Align(
                   alignment: Alignment.topCenter,
-                  child: Image.asset(
-                    'assets/running.png',
-                    scale: 0.9,
-                    fit: BoxFit.contain,
+                  child: Container(
+                    height: W * .15,
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(W * .020)),
+                    child: Image.asset(
+                      'assets/running.png',
+                      fit: BoxFit.fitHeight,
+                    ),
                   )),
             ),
           ),
         ),
         Flexible(
-          flex: 4,
+          flex: 9,
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: W * .040,
+              horizontal: W * .010,
+              vertical: W * .040,
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   child: Text(
                     heading,
                     style: GoogleFonts.poppins(
-                        fontSize: W * .036,
+                        fontSize: W * .042,
                         fontWeight: FontWeight.w600,
                         color: AppColors.background),
                   ),
                 ),
                 SizedBox(
-                  height: W * .010,
+                  height: W * .001,
                 ),
                 Container(
                   child: Text(
                     address,
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
-                        fontSize: W * .024,
+                        fontSize: W * .032,
                         fontWeight: FontWeight.w400,
                         color: Colors.black),
                   ),
@@ -196,7 +268,7 @@ class CustomCard {
                     service,
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
-                        fontSize: W * .024,
+                        fontSize: W * .032,
                         fontWeight: FontWeight.w400,
                         color: Colors.black),
                   ),
@@ -206,25 +278,26 @@ class CustomCard {
           ),
         ),
         Flexible(
-          flex: 1,
+          flex: 3,
           child: Container(
-            padding: EdgeInsets.only(top: W * .056),
+            padding: EdgeInsets.only(top: W * .037, left: W * .050),
             child: Align(
                 alignment: Alignment.topCenter,
                 child: Column(
                   children: [
                     Icon(
                       Icons.favorite,
+                      size: W * .060,
                       color: AppColors.buttonColor,
                     ),
                     SizedBox(
-                      height: W * .006,
+                      height: W * .015,
                     ),
                     Text(
                       'Favorite',
                       style: GoogleFonts.poppins(
-                          fontSize: W * .020,
-                          fontWeight: FontWeight.w500,
+                          fontSize: W * .028,
+                          fontWeight: FontWeight.w600,
                           color: AppColors.buttonColor),
                     )
                   ],
@@ -245,117 +318,124 @@ class CustomCard {
     double W = Mq.w;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: W * .060),
-      child: Card(
-        child: Container(
-          height: W * .244,
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(12)),
-          child: Row(children: [
-            Flexible(
-              flex: 1,
-              child: Padding(
-                padding: EdgeInsets.only(top: W * .040),
-                child: Container(
-                  child: Align(
-                      alignment: Alignment.topCenter,
-                      child: Image.asset(
-                        pic,
-                        scale: 0.9,
-                        fit: BoxFit.contain,
-                      )),
-                ),
-              ),
-            ),
-            Flexible(
-              flex: 4,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: W * .040, vertical: W * .020),
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        heading,
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .036,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.background),
-                      ),
-                      SizedBox(
-                        height: W * .010,
-                      ),
-                      Container(
-                        child: Text(
-                          address,
-                          textAlign: TextAlign.left,
-                          style: GoogleFonts.poppins(
-                              fontSize: W * .024,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black),
-                        ),
-                      ),
-                      SizedBox(
-                        height: W * .006,
-                      ),
-                      Container(
-                        child: Text(
-                          service,
-                          textAlign: TextAlign.left,
-                          style: GoogleFonts.poppins(
-                              fontSize: W * .024,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black),
-                        ),
-                      ),
-                      SizedBox(
-                        height: W * .006,
-                      ),
-                      SizedBox(
-                        width: W * .380,
-                        child: Text(
-                          price,
-                          textAlign: TextAlign.left,
-                          style: GoogleFonts.poppins(
-                              fontSize: W * .024,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Flexible(
-              flex: 1,
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(12)),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Flexible(
+            flex: 3,
+            child: Padding(
+              padding: EdgeInsets.only(top: W * .040, left: W * .040),
               child: Container(
-                padding: EdgeInsets.only(top: W * .040),
                 child: Align(
                     alignment: Alignment.topCenter,
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.location_on_outlined,
-                          color: AppColors.buttonColor,
-                        ),
-                        SizedBox(
-                          height: W * .006,
-                        ),
-                        Text(
-                          'Directions',
-                          style: GoogleFonts.poppins(
-                              fontSize: W * .020,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.buttonColor),
-                        )
-                      ],
+                    child: Container(
+                      height: W * .13,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(W * .020)),
+                      child: Image.asset(
+                        pic,
+                        fit: BoxFit.fitHeight,
+                      ),
                     )),
               ),
             ),
-          ]),
-        ),
+          ),
+          Flexible(
+            flex: 9,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: W * .020, vertical: W * .050),
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      heading,
+                      style: GoogleFonts.poppins(
+                          fontSize: W * .042,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.background),
+                    ),
+                    SizedBox(
+                      height: Mq.h * .010,
+                    ),
+                    Container(
+                      child: Text(
+                        address,
+                        textAlign: TextAlign.left,
+                        style: GoogleFonts.poppins(
+                            fontSize: W * .0318,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black),
+                      ),
+                    ),
+                    SizedBox(
+                      height: W * .006,
+                    ),
+                    Container(
+                      child: Text(
+                        service,
+                        textAlign: TextAlign.left,
+                        style: GoogleFonts.poppins(
+                            fontSize: W * .0318,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black),
+                      ),
+                    ),
+                    SizedBox(
+                      height: W * .006,
+                    ),
+                    SizedBox(
+                      width: W * .380,
+                      child: Text(
+                        price,
+                        textAlign: TextAlign.left,
+                        style: GoogleFonts.poppins(
+                            fontSize: W * .0318,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 3,
+            child: Container(
+              padding: EdgeInsets.only(top: W * .040),
+              child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Column(
+                    children: [
+                      Container(
+                        height: W * .065,
+                        width: W * .055,
+                        child: Image.asset(
+                          'assets/pinlocation.png',
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                      SizedBox(
+                        height: W * .006,
+                      ),
+                      Text(
+                        'Directions',
+                        style: GoogleFonts.poppins(
+                            fontSize: W * .030,
+                            letterSpacing: -0.8,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.buttonColor),
+                      )
+                    ],
+                  )),
+            ),
+          ),
+        ]),
       ),
     );
   }
@@ -363,42 +443,45 @@ class CustomCard {
   static Widget customCard1(BuildContext context, String pic, String heading,
       String address, String rating) {
     double W = Mq.w;
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (_) => SalonDetailsPage(
-                        name: heading,
-                        rating: rating,
-                        location: address,
-                        images: const [
-                          'assets/salondetailspic.png',
-                          'assets/salondetailspic.png',
-                          'assets/salondetailspic.png',
-                          'assets/salondetailspic.png'
-                        ])));
-      },
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: W * .060),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: W * .060),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => SalonDetailsPage(
+                          name: heading,
+                          rating: rating,
+                          location: address,
+                          images: const [
+                            'assets/salondetailspic.png',
+                            'assets/salondetailspic.png',
+                            'assets/salondetailspic.png',
+                            'assets/salondetailspic.png'
+                          ])));
+        },
         child: Container(
-          height: W * .236,
+          clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
               border: Border.all(color: AppColors.buttonColor, width: 0.5),
               borderRadius: BorderRadius.circular(12)),
           child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             Flexible(
-              flex: 2,
+              flex: 3,
               child: Container(
-                height: W * .236,
+                height: Mq.h * .140,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        fit: BoxFit.contain, image: AssetImage(pic))),
+                        fit: BoxFit.cover, image: AssetImage(pic))),
                 child: Padding(
                   padding: EdgeInsets.all(W * .020),
                   child: Align(
                       alignment: Alignment.topRight,
-                      child: Image.asset('assets/Group 34359.png')),
+                      child: Container(
+                          height: W * .055,
+                          width: W * .055,
+                          child: Image.asset('assets/Group 34359.png'))),
                 ),
               ),
             ),
@@ -406,8 +489,7 @@ class CustomCard {
               flex: 5,
               child: Container(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: W * .020, horizontal: W * .020),
+                  padding: EdgeInsets.symmetric(horizontal: W * .020),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -416,26 +498,27 @@ class CustomCard {
                         child: Text(
                           heading,
                           style: GoogleFonts.poppins(
-                              fontSize: W * .036,
+                              fontSize: W * .044,
                               fontWeight: FontWeight.w600,
                               color: AppColors.background),
                         ),
                       ),
-                      SizedBox(
-                        height: W * .006,
-                      ),
+                      SizedBox(height: Mq.h * .010),
                       Container(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Image.asset('assets/star.png'),
+                            Container(
+                                height: W * .044,
+                                width: W * .044,
+                                child: Image.asset('assets/star.png')),
                             SizedBox(
-                              width: W * .005,
+                              width: W * .015,
                             ),
                             Text(
                               rating,
                               style: GoogleFonts.poppins(
-                                  fontSize: W * .024,
+                                  fontSize: W * .028,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.black),
                             )
@@ -443,16 +526,19 @@ class CustomCard {
                         ),
                       ),
                       SizedBox(
-                        height: W * .003,
+                        height: Mq.h * .005,
                       ),
                       Container(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Image.asset('assets/location.png'),
+                            Container(
+                                height: W * .044,
+                                width: W * .044,
+                                child: Image.asset('assets/location.png')),
                             SizedBox(
-                              width: W * .005,
+                              width: W * .015,
                             ),
                             Expanded(
                               child: Container(
@@ -460,7 +546,8 @@ class CustomCard {
                                   address,
                                   textAlign: TextAlign.left,
                                   style: GoogleFonts.poppins(
-                                      fontSize: W * .024,
+                                      letterSpacing: -0.1,
+                                      fontSize: W * .028,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black),
                                 ),
@@ -484,79 +571,62 @@ class CustomCard {
       String offer, String title, String Subtitle, String image) {
     double W = Mq.w;
     return Container(
-      width: W * .480,
+      width: W * .490,
+      height: Mq.h * .350,
+      clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-          color: AppColors.White, borderRadius: BorderRadius.circular(12)),
+          border: Border.all(color: Colors.grey.shade200, width: 1),
+          borderRadius: BorderRadius.circular(W * .024)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              Container(
-                height: W * .25,
-                width: W * .480,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover, image: AssetImage(image)),
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(12),
-                        topRight: Radius.circular(12))),
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: EdgeInsets.all(W * .020),
-                  child: Image.asset('assets/Group 34359.png'),
-                ),
-              )
-            ],
-          ),
           Container(
-            height: W * .156,
+            height: Mq.h * .100,
             decoration: BoxDecoration(
-                color: AppColors.White,
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12))),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.all(W * .016),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      child: RichText(
-                        text: TextSpan(children: [
-                          TextSpan(
-                              text: offer,
-                              style: GoogleFonts.poppins(
-                                  fontSize: W * .030,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.buttonColor)),
-                          TextSpan(
-                              text: title,
-                              style: GoogleFonts.poppins(
-                                  fontSize: W * .030,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black)),
-                        ]),
-                      ),
-                    ),
-                    Container(
-                      child: Text(
-                        Subtitle,
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .020,
-                            fontWeight: FontWeight.w400,
-                            color: const Color.fromRGBO(130, 130, 130, 1)),
-                      ),
-                    )
-                  ],
+                image: DecorationImage(
+                    fit: BoxFit.cover, image: AssetImage(image))),
+            child: Padding(
+              padding: EdgeInsets.all(W * .020),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  height: W * .055,
+                  width: W * .055,
+                  child: Image.asset('assets/Group 34359.png'),
                 ),
               ),
             ),
-          )
+          ),
+          Padding(
+            padding:
+                EdgeInsets.symmetric(vertical: W * .010, horizontal: W * .020),
+            child: RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                      text: offer,
+                      style: GoogleFonts.poppins(
+                          fontSize: W * .034,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.buttonColor)),
+                  TextSpan(
+                      text: title,
+                      style: GoogleFonts.poppins(
+                          fontSize: W * .034,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black)),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: W * .020),
+            child: Text(Subtitle,
+                style: GoogleFonts.poppins(
+                    fontSize: W * .024,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey)),
+          ),
         ],
       ),
     );
@@ -565,8 +635,14 @@ class CustomCard {
   static Widget userRatingCard(String name, String pic, int Star, int time) {
     double W = Mq.w;
     return ListTile(
-      leading: CircleAvatar(
-        backgroundImage: AssetImage(pic),
+      leading: Container(
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.black, width: 1)),
+        child: CircleAvatar(
+          radius: Mq.w * .075,
+          backgroundImage: AssetImage(pic),
+        ),
       ),
       title: Text(
         name,
@@ -578,15 +654,64 @@ class CustomCard {
       subtitle: Row(
         children: [
           for (int i = 0; i < 5; i++)
-            Image.asset('assets/star.png',
-                color: i < Star ? AppColors.buttonColor : Colors.grey),
+            Container(
+              width: W * .045,
+              height: W * .045,
+              child: Image.asset('assets/star.png',
+                  color: i < Star ? AppColors.buttonColor : Colors.grey),
+            ),
+          SizedBox(
+            width: W * .040,
+          ),
+          Text('${time} min ago',
+              style: GoogleFonts.poppins(
+                  fontSize: W * .034,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.grey.shade500)),
         ],
       ),
-      trailing: Text('${time} min ago',
-          style: GoogleFonts.poppins(
-              fontSize: W * .034,
-              fontWeight: FontWeight.w600,
-              color: Colors.grey.shade600)),
+    );
+  }
+
+  static Widget searchCard(
+    String heading,
+    String sub,
+  ) {
+    return Container(
+      child: Row(
+        children: [
+          Container(
+            height: Mq.w * .055,
+            width: Mq.w * .055,
+            child: Image.asset('assets/pinlocation.png'),
+          ),
+          SizedBox(
+            width: Mq.w * .040,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                heading,
+                style: GoogleFonts.poppins(
+                    fontSize: Mq.w * .036,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.background),
+              ),
+              Container(
+                width: Mq.w * .650,
+                child: Text(
+                  sub,
+                  style: GoogleFonts.poppins(
+                      fontSize: Mq.w * .030,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

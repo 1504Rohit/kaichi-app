@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
@@ -16,6 +17,14 @@ class AboutUsPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          // Status bar color
+          statusBarColor: Colors.transparent,
+
+          // Status bar brightness (optional)
+          statusBarIconBrightness:
+              Brightness.light, // For An// For iOS (dark icons)
+        ),
         leading: InkWell(
             onTap: () {
               Navigator.pop(context);
@@ -23,7 +32,7 @@ class AboutUsPage extends StatelessWidget {
             child: const Icon(Icons.arrow_back)),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -42,8 +51,8 @@ class AboutUsPage extends StatelessWidget {
             ),
             ListTile(
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => const TermsPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const TermsPage()));
               },
               title: Text(
                 'Terms of Service',

@@ -6,6 +6,7 @@ import 'package:kaichi_user/style/assets_links/assets_link.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/view/authentication/login_page1.dart';
+import 'package:kaichi_user/view/authentication/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -24,76 +25,77 @@ class _LoginPageState extends State<LoginPage> {
           Align(
               alignment: Alignment.topCenter,
               child: SizedBox(
-                width: double.infinity,
+                width: Mq.w,
+                height: Mq.h * .513,
                 child: Image.asset(
                   'assets/loginBG.png',
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
                 ),
               )),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: W * 1.14,
-              width: double.infinity,
+              height: Mq.h * .563,
+              width: W,
               decoration: BoxDecoration(
                   color: AppColors.background,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20))),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: W * .030),
-                    child: SizedBox(
-                        height: W * .250,
-                        width: W * .258,
-                        child: Image.asset(Links.appLogo)),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(W * .040),
+                      topRight: Radius.circular(W * .040))),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: Mq.h * .030, horizontal: W * .060),
+                child: SizedBox(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                          height: Mq.h * .170,
+                          width: W * .340,
+                          child: Image.asset(Links.appLogo)),
+                      SizedBox(
+                        height: Mq.h * .020,
+                      ),
+                      Text(
+                        'Welcome to  Kainchi',
+                        style: GoogleFonts.poppins(
+                            fontSize: W * .065,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.White),
+                      ),
+                      SizedBox(
+                        height: Mq.h * .015,
+                      ),
+                      Container(
+                        child: Text(
+                          'You are one step away to get started Register tour salon here',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                              fontSize: W * .038,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.White),
+                        ),
+                      ),
+                      SizedBox(
+                        height: Mq.h * .035,
+                      ),
+                      StyleButton.loginLike(context, () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()));
+                      }, 'LOGIN', AppColors.buttonColor),
+                      SizedBox(
+                        height: Mq.h * .020,
+                      ),
+                      StyleButton.loginLikeOutline(context, () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignupPage()));
+                      }, 'CREATE AN ACCOUNT', AppColors.background)
+                    ],
                   ),
-                  Text(
-                    'Welcome to  Kainchi',
-                    style: GoogleFonts.poppins(
-                        fontSize: W * .048,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.White),
-                  ),
-                  SizedBox(
-                    height: W * .020,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: Text(
-                      'You are one step away to get started Register tour salon here',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
-                          fontSize: W * .028,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.White),
-                    ),
-                  ),
-                  SizedBox(
-                    height: W * .060,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: W * .050),
-                    child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginScreen()));
-                        },
-                        child: StyleButton.loginLike(
-                            'LOGIN', AppColors.buttonColor)),
-                  ),
-                  SizedBox(
-                    height: W * .060,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: W * .050),
-                    child: StyleButton.loginLikeOutline(
-                        'CREATE AN ACCOUNT', AppColors.background),
-                  )
-                ],
+                ),
               ),
             ),
           ),

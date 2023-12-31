@@ -21,190 +21,204 @@ class _CheckOutPageState extends State<CheckOutPage> {
   Widget build(BuildContext context) {
     double W = Mq.w;
     return Scaffold(
-      backgroundColor: AppColors.White,
+      backgroundColor: AppColors.bodyColor,
       appBar: AppBar(
         backgroundColor: AppColors.White,
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: W * .060),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Checkout',
-                style: GoogleFonts.poppins(
-                    fontSize: W * .060,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.background),
-              ),
-              SizedBox(
-                height: W * .090,
-              ),
-              Text(
-                'Woodlands Hills Salon',
-                style: GoogleFonts.poppins(
-                    fontSize: W * .040,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.buttonColor),
-              ),
-              SizedBox(
-                height: W * .060,
-              ),
-              ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: selectedItem.item1.length,
-                  itemBuilder: (context, i) {
-                    return Container(
-                      height: W * .220,
-                      child: Column(
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              color: AppColors.White,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: W * .060),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Checkout',
+                      style: GoogleFonts.poppins(
+                          fontSize: W * .060,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.background),
+                    ),
+                    SizedBox(
+                      height: W * .090,
+                    ),
+                    Text(
+                      'Woodlands Hills Salon',
+                      style: GoogleFonts.poppins(
+                          fontSize: W * .040,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.buttonColor),
+                    ),
+                    SizedBox(
+                      height: W * .140,
+                    ),
+                    ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: selectedItem.item1.length,
+                        itemBuilder: (context, i) {
+                          return Column(
                             children: [
-                              Column(
+                              Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(
-                                    width: W * .400,
-                                    child: Text(
-                                      selectedItem.item1[i].details,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: W * .038,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black),
-                                    ),
-                                  ),
-                                  Text(
-                                    '\$ ${selectedItem.item1[i].Price}',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: W * .038,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColors.buttonColor),
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsets.symmetric(vertical: W * .050),
-                                child: Card(
-                                  elevation: 2,
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Container(
-                                      height: W * .070,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        color: AppColors.buttonColor,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: W * .400,
+                                        child: Text(
+                                          selectedItem.item1[i].details,
+                                          style: GoogleFonts.poppins(
+                                              fontSize: W * .038,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black),
+                                        ),
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: W * .020),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              'Select',
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: W * .038,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.black),
-                                            ),
-                                            Icon(
-                                              Icons.done,
-                                              size: W * .040,
-                                              color: Colors.black,
-                                            )
-                                          ],
+                                      Text(
+                                        '\$ ${selectedItem.item1[i].Price}',
+                                        style: GoogleFonts.poppins(
+                                            fontSize: W * .038,
+                                            fontWeight: FontWeight.w600,
+                                            color: AppColors.buttonColor),
+                                      )
+                                    ],
+                                  ),
+                                  Card(
+                                    elevation: 2,
+                                    child: InkWell(
+                                      onTap: () {},
+                                      child: Container(
+                                        height: W * .070,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(W * .012),
+                                          color: AppColors.buttonColor,
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: W * .020),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                'Select',
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: W * .038,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Colors.black),
+                                              ),
+                                              Icon(
+                                                Icons.done,
+                                                size: W * .040,
+                                                color: Colors.black,
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                              )
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: W * .040,
+                              ),
                             ],
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
-              SizedBox(
-                height: W * .1,
+                          );
+                        }),
+                  ],
+                ),
               ),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Item Total',
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .038,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
-                      ),
-                      Text(
-                        '\$ ${selectedItem.price.value}',
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .038,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: W * .040,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Coupon Discount',
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .038,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
-                      ),
-                      Text(
-                        '-\$ 10',
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .038,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.green),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: W * .040,
-                  ),
-                  Divider(),
-                  SizedBox(
-                    height: W * .040,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Amount Payable',
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .040,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.buttonColor),
-                      ),
-                      Text(
-                        '\$ ${selectedItem.price.value - 10}',
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .040,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.buttonColor),
-                      ),
-                    ],
-                  ),
-                ],
-              )
-            ],
-          ),
+            ),
+            SizedBox(
+              height: W * .070,
+            ),
+            Container(
+              color: AppColors.White,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: W * .060, vertical: W * .040),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Item Total',
+                          style: GoogleFonts.poppins(
+                              fontSize: W * .038,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black),
+                        ),
+                        Text(
+                          '\$ ${selectedItem.price.value}',
+                          style: GoogleFonts.poppins(
+                              fontSize: W * .038,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: W * .040,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Coupon Discount',
+                          style: GoogleFonts.poppins(
+                              fontSize: W * .038,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black),
+                        ),
+                        Text(
+                          '-\$ 10',
+                          style: GoogleFonts.poppins(
+                              fontSize: W * .038,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.green),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: W * .040,
+                    ),
+                    Divider(),
+                    SizedBox(
+                      height: W * .040,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Amount Payable',
+                          style: GoogleFonts.poppins(
+                              fontSize: W * .040,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.buttonColor),
+                        ),
+                        Text(
+                          '\$ ${selectedItem.price.value - 10}',
+                          style: GoogleFonts.poppins(
+                              fontSize: W * .040,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.buttonColor),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
       bottomNavigationBar: Container(
@@ -216,62 +230,62 @@ class _CheckOutPageState extends State<CheckOutPage> {
             child: Container(
               height: W * .140,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(W * .018),
                 color: AppColors.buttonColor,
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: W * .060),
+                padding: EdgeInsets.symmetric(horizontal: W * .030),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: W * .28,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            height: W * .089,
-                            width: W * .089,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(9),
-                                border: Border.all(
-                                  color: Colors.black,
-                                )),
-                            child: Center(
-                                child: Obx(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          height: W * .089,
+                          width: W * .089,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(W * .012),
+                              border: Border.all(
+                                color: Colors.black,
+                              )),
+                          child: Center(
+                              child: Obx(
+                            () => Text(
+                              selectedItem.item1.length.toString(),
+                              style: GoogleFonts.poppins(
+                                  fontSize: W * .028,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black),
+                            ),
+                          )),
+                        ),
+                        SizedBox(
+                          width: W * .020,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Obx(
                               () => Text(
-                                selectedItem.item1.length.toString(),
+                                '\$ ${selectedItem.price.value}',
                                 style: GoogleFonts.poppins(
-                                    fontSize: W * .028,
-                                    fontWeight: FontWeight.w700,
+                                    fontSize: W * .040,
+                                    fontWeight: FontWeight.w600,
                                     color: Colors.black),
                               ),
-                            )),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Obx(
-                                () => Text(
-                                  '\$ ${selectedItem.price.value}',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: W * .040,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Text(
-                                'plus taxes',
-                                style: GoogleFonts.poppins(
-                                    fontSize: W * .032,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
+                            ),
+                            Text(
+                              'plus taxes',
+                              style: GoogleFonts.poppins(
+                                  fontSize: W * .032,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        )
+                      ],
                     ),
                     InkWell(
                       onTap: () {
