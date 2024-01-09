@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/style/assets_links/assets_link.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
+import 'package:kaichi_user/view/bottom_navigation.dart';
 import 'package:kaichi_user/view/onbording.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,10 +21,20 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Timer(
-        const Duration(seconds: 3),
-        () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const OnbordingPage())));
+    Timer(const Duration(seconds: 3), () => getUserLoginOrNot());
+  }
+
+  getUserLoginOrNot() async {
+    // Obtain shared preferences.
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if (prefs.getString('activeStatus') == '1') {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const BottomNavigation()));
+    } else {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const OnbordingPage()));
+    }
   }
 
   @override

@@ -48,6 +48,7 @@ dependencies:
   dotted_line: ^3.2.2
   image_picker: ^1.0.5
   http: ^1.1.2
+  shared_preferences: ^2.2.2
   
 
 dev_dependencies:

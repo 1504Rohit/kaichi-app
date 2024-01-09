@@ -46,7 +46,7 @@ class Data {
   String name;
   int phone;
   int v;
-  // String imagePath;
+  String imagePath;
 
   Data({
     required this.createdOn,
@@ -58,7 +58,7 @@ class Data {
     required this.name,
     required this.phone,
     required this.v,
-    // required this.imagePath,
+    required this.imagePath,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
@@ -71,7 +71,7 @@ class Data {
         name: json["name"],
         phone: json["phone"],
         v: json["__v"],
-        // imagePath: json["imagePath"],
+        imagePath: json["imagePath"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -84,6 +84,6 @@ class Data {
         "name": name,
         "phone": phone,
         "__v": v,
-        // "imagePath": imagePath,
+        "imagePath": imagePath,
       };
 }

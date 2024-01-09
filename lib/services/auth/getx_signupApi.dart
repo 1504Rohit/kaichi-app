@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:kaichi_user/config/api_url.dart';
+import 'package:kaichi_user/services/auth/getx_usertoken.dart';
 import 'package:kaichi_user/utils/toast/flutter_toast.dart';
 import 'package:kaichi_user/view/bottom_navigation.dart';
 
@@ -36,6 +37,8 @@ class SignupApi extends GetxController {
         CustToast.custToast(finalResponse["message"][0]);
       } else {
         CustToast.custToast(finalResponse["message"][0]);
+        UserPreferences.id = finalResponse["data"]['_id'];
+        UserPreferences.token = finalResponse["token"];
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (_) => const BottomNavigation()),

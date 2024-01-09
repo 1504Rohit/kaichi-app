@@ -5,12 +5,14 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:kaichi_user/config/api_url.dart';
 import 'package:kaichi_user/model/getuser_model.dart';
+import 'package:kaichi_user/services/auth/getx_usertoken.dart';
 import 'package:kaichi_user/utils/toast/flutter_toast.dart';
 import 'package:kaichi_user/view/bottom_navigation.dart';
 
 class LoginApi extends GetxController {
   RxBool isLoading = false.obs;
   late User user;
+
   Future loginApi(String otp, String phone, BuildContext context) async {
     var headers = {
       'Content-Type': 'application/json',
@@ -31,7 +33,10 @@ class LoginApi extends GetxController {
       } else {
         CustToast.custToast(finalResponse["message"][0]);
         user = User.fromJson(finalResponse);
-        print(user);
+        print(finalResponse["data"]["_id"]);
+
+        UserPreferences.id = finalResponse["data"]['_id'];
+        UserPreferences.token = finalResponse["token"];
         // Navigator.pushReplacement(context,
         //         MaterialPageRoute(builder: (_) => const BottomNavigation()))
         //     .then((value) async {});

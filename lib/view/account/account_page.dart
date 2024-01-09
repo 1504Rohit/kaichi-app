@@ -11,6 +11,7 @@ import 'package:kaichi_user/view/account/aboutUs/aboutus_page.dart';
 import 'package:kaichi_user/view/account/editaccount_page.dart';
 import 'package:kaichi_user/view/account/favourite_page.dart';
 import 'package:kaichi_user/view/account/manage_address.dart';
+import 'package:kaichi_user/view_model/getx_bottomNav.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -20,6 +21,15 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  Navigation _navigation = Get.put(Navigation());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _navigation.getLocalData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -37,64 +47,73 @@ class _AccountPageState extends State<AccountPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: W * .060),
-                child: AppBar(
-                  centerTitle: false,
-                  backgroundColor: AppColors.background,
-                  leading: Container(
-                      height: W * .12,
-                      width: W * .12,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
+                  padding: EdgeInsets.symmetric(horizontal: W * .060),
+                  child: Obx(
+                    () => AppBar(
+                      centerTitle: false,
+                      backgroundColor: AppColors.background,
+                      leading: Container(
+                          height: W * .12,
+                          width: W * .12,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: _navigation.imagePath!.value == ''
+                              // ? Image.asset('assets/Avatar.png')
+                              ? CircleAvatar(
+                                  backgroundImage:
+                                      AssetImage('assets/Avatar.png'),
+                                )
+                              : CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      _navigation.imagePath!.value))
+                          // loginApi.user.data.imagePath),
+                          ),
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            // loginApi.user.data.name,
+                            // 'John Doe',
+                            _navigation.name!.value,
+                            style: GoogleFonts.poppins(
+                                fontSize: W * .040,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.White),
+                          ),
+                          SizedBox(
+                            height: W * .006,
+                          ),
+                          Text(
+                            // loginApi.user.data.email,
+                            // 'johndoe@gmail.com',
+                            _navigation.email!.value,
+                            style: GoogleFonts.poppins(
+                                fontSize: W * .028,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.White),
+                          ),
+                        ],
                       ),
-                      child: Image.asset(
-                        'assets/Profile Image.png',
-                      )
-                      // loginApi.user.data.imagePath),
-                      ),
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        // loginApi.user.data.name,
-                        'John Doe',
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .040,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.White),
-                      ),
-                      SizedBox(
-                        height: W * .006,
-                      ),
-                      Text(
-                        // loginApi.user.data.email,
-                        'johndoe@gmail.com',
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .028,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.White),
-                      ),
-                    ],
-                  ),
-                  actions: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const EditProfilePage()));
-                      },
-                      child: Text(
-                        'Edit >',
-                        style: GoogleFonts.poppins(
-                            fontSize: W * .040,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.buttonColor),
-                      ),
+                      actions: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const EditProfilePage()));
+                          },
+                          child: Text(
+                            'Edit >',
+                            style: GoogleFonts.poppins(
+                                fontSize: W * .040,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.buttonColor),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              )
+                  ))
               // Padding(
               //   padding: EdgeInsets.symmetric(
               //       horizontal: W * .060, vertical: W * .020),

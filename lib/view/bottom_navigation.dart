@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kaichi_user/services/auth/getx_getuserApi.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/style/assets_links/assets_link.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/view_model/getx_bottomNav.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -16,12 +18,22 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   Navigation nav = Get.put(Navigation());
+  GetUser getUser = Get.put(GetUser());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getUser.getUserApi();
+    // getLocalData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light));
+
     double W = Mq.w;
     return Scaffold(
       body: Obx(
