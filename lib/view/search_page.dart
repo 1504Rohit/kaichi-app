@@ -15,6 +15,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   TextEditingController _controller = TextEditingController();
   String s = '';
+
   @override
   Widget build(BuildContext context) {
     double W = Mq.w;
@@ -22,15 +23,11 @@ class _SearchPageState extends State<SearchPage> {
       backgroundColor: AppColors.bodyColor,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: AppColors.bodyColor,
         systemOverlayStyle: SystemUiOverlayStyle(
-          // Status bar color
-          statusBarColor: Colors.transparent,
-
-          // Status bar brightness (optional)
-          statusBarIconBrightness:
-              Brightness.light, // For An// For iOS (dark icons)
+          statusBarColor: AppColors.background,
+          statusBarIconBrightness: Brightness.light,
         ),
+        backgroundColor: AppColors.bodyColor,
         title: Text(
           'Search',
           style: GoogleFonts.poppins(
@@ -53,77 +50,65 @@ class _SearchPageState extends State<SearchPage> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: W * .048,
-                                  width: W * .048,
-                                  decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.fitHeight,
-                                          image: AssetImage(
-                                            'assets/search1.png',
-                                          ))),
-                                ),
-                                Container(
-                                  height: W * .048,
-                                  width: W * .048,
-                                  decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.fitHeight,
-                                          image: AssetImage(
-                                            'assets/line.png',
-                                          ))),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          flex: 14,
-                          child: Container(
-                            height: W * .1,
-                            padding: EdgeInsets.symmetric(horizontal: W * .01),
-                            child: Align(
-                              alignment: Alignment.topCenter,
-                              child: TextFormField(
-                                maxLines: 1,
-                                controller: _controller,
-                                onChanged: (value) {
-                                  setState(() {
-                                    s = _controller.text.toString();
-                                  });
-                                },
-                                cursorColor: Colors.grey.shade400,
-                                decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: Mq.w * .030),
-                                    border: InputBorder.none,
-                                    hintText: 'Search location & services',
-                                    hintStyle: GoogleFonts.poppins(
-                                        color: AppColors.background,
-                                        fontSize: W * .035,
-                                        fontWeight: FontWeight.w500)),
-                                style: GoogleFonts.poppins(
-                                    color: Colors.grey.shade700,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500),
+                        Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                height: W * .048,
+                                width: W * .048,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fitHeight,
+                                        image: AssetImage(
+                                          'assets/search1.png',
+                                        ))),
                               ),
+                              Container(
+                                height: W * .048,
+                                width: W * .048,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fitHeight,
+                                        image: AssetImage(
+                                          'assets/line.png',
+                                        ))),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: W * .01),
+                            child: TextField(
+                              maxLines: 1,
+                              controller: _controller,
+                              onChanged: (value) {
+                                setState(() {
+                                  s = _controller.text.toString();
+                                });
+                              },
+                              cursorColor: Colors.grey.shade400,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Search location & services',
+                                  hintStyle: GoogleFonts.poppins(
+                                      color: AppColors.background,
+                                      fontSize: W * .035,
+                                      fontWeight: FontWeight.w500)),
+                              style: GoogleFonts.poppins(
+                                  color: Colors.grey.shade700,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500),
                             ),
                           ),
                         ),
-                        Flexible(
-                          flex: 1,
-                          child: Container(
-                            height: W * .045,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    fit: BoxFit.fitHeight,
-                                    image: AssetImage('assets/path1.png'))),
-                          ),
+                        Container(
+                          height: W * .048,
+                          width: W * .048,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  fit: BoxFit.fitHeight,
+                                  image: AssetImage('assets/path1.png'))),
                         ),
                       ],
                     ),

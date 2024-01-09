@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
@@ -23,6 +24,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
     return Scaffold(
       backgroundColor: AppColors.bodyColor,
       appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: AppColors.background,
+          statusBarIconBrightness: Brightness.light,
+        ),
         backgroundColor: AppColors.White,
       ),
       body: SingleChildScrollView(

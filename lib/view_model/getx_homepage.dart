@@ -314,4 +314,6 @@ class HomeLogic extends GetxController {
   ].obs;
 
   RxInt petPageNo = 0.obs;
+
+  RxInt number = 0.obs;
 }

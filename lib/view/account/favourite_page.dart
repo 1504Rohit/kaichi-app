@@ -22,12 +22,8 @@ class _FavouritePageState extends State<FavouritePage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         systemOverlayStyle: SystemUiOverlayStyle(
-          // Status bar color
-          statusBarColor: Colors.transparent,
-
-          // Status bar brightness (optional)
-          statusBarIconBrightness:
-              Brightness.light, // For An// For iOS (dark icons)
+          statusBarColor: AppColors.background,
+          statusBarIconBrightness: Brightness.light,
         ),
         leading: InkWell(
             onTap: () {

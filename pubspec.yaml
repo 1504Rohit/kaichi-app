@@ -47,6 +47,7 @@ dependencies:
   pinput: ^3.0.1
   dotted_line: ^3.2.2
   image_picker: ^1.0.5
+  http: ^1.1.2
   
 
 dev_dependencies:

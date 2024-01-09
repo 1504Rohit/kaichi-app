@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kaichi_user/services/auth/getx_checkuserApi.dart';
+import 'package:kaichi_user/services/auth/getx_sendOtpApi.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/view/authentication/forgotpassword_page.dart';
 import 'package:kaichi_user/view/authentication/pininput_page.dart';
+import 'package:kaichi_user/view/authentication/signup1_page.dart';
 import 'package:kaichi_user/view/authentication/signup_page.dart';
 import 'package:kaichi_user/view/bottom_navigation.dart';
 
@@ -17,9 +21,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  CheckUserApi checkUserApi = Get.put(CheckUserApi());
+  SendOtpApi OtpApi = Get.put(SendOtpApi());
+  final _formKey = new GlobalKey<FormState>();
+  TextEditingController _controller = TextEditingController();
+  bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
     double W = Mq.w;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -65,10 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextButton(
                       style: TextButton.styleFrom(padding: EdgeInsets.zero),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const SignupPage()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => Signup1Page()));
                       },
                       child: Text('SignUp',
                           style: GoogleFonts.poppins(
@@ -94,66 +102,122 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: Mq.h * .010,
             ),
-            Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: W * .060,
-                ),
-                child: SizedBox(
-                  height: Mq.h * .058,
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(
-                          top: Mq.h * .020,
-                          bottom: Mq.h * .020,
-                          left: W * .040,
-                          right: W * .040),
-                      focusColor: AppColors.background,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(W * .020)),
-                      hintText: 'Enter here',
-                      hintStyle: GoogleFonts.poppins(
-                          fontSize: W * .035,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black),
+            // phone number form field
+
+            Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: W * .060,
+                        ),
+                        child: SizedBox(
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                            controller: _controller,
+                            validator: (value) => value!.isEmpty
+                                ? 'Field Cannot be Empty'
+                                : value.length != 10
+                                    ? 'Please Enter Atleast 10 Character'
+                                    : null,
+                            maxLength: 10,
+                            decoration: InputDecoration(
+                              counterText: "",
+                              errorStyle: GoogleFonts.poppins(
+                                  fontSize: W * .024,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.red),
+                              focusColor: AppColors.background,
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: W * .040, vertical: Mq.h * .017),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(W * .020)),
+                              hintText: 'Enter here',
+                              hintStyle: GoogleFonts.poppins(
+                                  fontSize: W * .035,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black),
+                            ),
+                            style: GoogleFonts.poppins(
+                                fontSize: W * .032,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black),
+                          ),
+                        )),
+                    SizedBox(
+                      height: Mq.h * .030,
                     ),
-                    style: GoogleFonts.poppins(
-                        fontSize: W * .032,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black),
-                  ),
+                    // Align(
+                    //   alignment: Alignment.centerRight,
+                    //   child: Padding(
+                    //     padding: EdgeInsets.symmetric(horizontal: W * .060),
+                    //     child: InkWell(
+                    //       onTap: () {
+                    //         Navigator.push(
+                    //             context,
+                    //             MaterialPageRoute(
+                    //                 builder: (_) => const ForgotPage()));
+                    //       },
+                    //       child: Text(
+                    //         'Forgot your Password?',
+                    //         style: GoogleFonts.poppins(
+                    //             fontSize: W * .032,
+                    //             fontWeight: FontWeight.w500,
+                    //             color: Colors.grey),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: Mq.h * .030,
+                    // ),
+                    Padding(
+                        padding: EdgeInsets.symmetric(horizontal: W * .060),
+                        child: Obx(() => StyleButton.loginLike(context,
+                                () async {
+                              // Navigator.push(context,
+                              //     MaterialPageRoute(builder: (_) => const PinInputPage()));
+
+                              if (_formKey.currentState!.validate()) {
+                                OtpApi.isLoading.value = true;
+                                var res = await checkUserApi.isUserExist(
+                                    _controller.text.toString(), '3');
+                                print(res);
+                                if (res == false) {
+                                  OtpApi.isLoading.value = false;
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => SignupPage(
+                                                phone:
+                                                    _controller.text.toString(),
+                                              ))).then((value) {
+                                    _controller.clear();
+                                  });
+                                }
+                                if (res == true) {
+                                  OtpApi.sendOtpApi(_controller.text.toString())
+                                      .then((value) {
+                                    OtpApi.isLoading.value = false;
+                                    // _controller.clear();
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => PinInputPage(
+                                                  phone: _controller.text
+                                                      .toString(),
+                                                ))).then((value) {
+                                      _controller.clear();
+                                    });
+                                  });
+                                }
+                              }
+                            }, 'SEND OTP', AppColors.buttonColor,
+                                OtpApi.isLoading.value))),
+                  ],
                 )),
-            SizedBox(
-              height: Mq.h * .010,
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: W * .060),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const ForgotPage()));
-                  },
-                  child: Text(
-                    'Forgot your Password?',
-                    style: GoogleFonts.poppins(
-                        fontSize: W * .032,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: Mq.h * .030,
-            ),
-            Padding(
-                padding: EdgeInsets.symmetric(horizontal: W * .060),
-                child: StyleButton.loginLike(context, () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const PinInputPage()));
-                }, 'SEND OTP', AppColors.buttonColor)),
             SizedBox(
               height: Mq.h * .002,
             ),

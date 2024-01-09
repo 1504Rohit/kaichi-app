@@ -1,13 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:kaichi_user/services/auth/getx_sendOtpApi.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
@@ -17,18 +13,14 @@ import 'package:kaichi_user/view/authentication/login_page1.dart';
 import 'package:kaichi_user/view/authentication/pinput2_page.dart';
 import 'package:kaichi_user/view_model/getx_signup.dart';
 
-class SignupPage extends StatefulWidget {
-  String phone;
-  SignupPage({
-    Key? key,
-    required this.phone,
-  }) : super(key: key);
+class Signup1Page extends StatefulWidget {
+  const Signup1Page({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<Signup1Page> createState() => _Signup1PageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _Signup1PageState extends State<Signup1Page> {
   SignUp signup = Get.put(SignUp());
 
   String _imagepath = '';
@@ -55,7 +47,7 @@ class _SignupPageState extends State<SignupPage> {
     final _formKey = new GlobalKey<FormState>();
     TextEditingController name = TextEditingController();
     TextEditingController Email = TextEditingController();
-    TextEditingController phoneNum = TextEditingController(text: widget.phone);
+    TextEditingController phoneNum = TextEditingController();
     return Scaffold(
       backgroundColor: AppColors.White,
       appBar: PreferredSize(

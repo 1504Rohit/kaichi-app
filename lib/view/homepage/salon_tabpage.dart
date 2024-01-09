@@ -111,23 +111,49 @@ class SalonTab {
               ),
             ),
           ),
-          SizedBox(
-            height: W * .096,
-            width: double.infinity,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: W * .060),
-              children: [
-                StyleButton.button('Premium Salons', AppColors.buttonColor),
-                SizedBox(
-                  width: W * .040,
-                ),
-                StyleButton.button('Medium Salons', AppColors.White),
-                SizedBox(
-                  width: W * .040,
-                ),
-                StyleButton.button('Basic Salons', AppColors.White),
-              ],
+          Obx(
+            () => SizedBox(
+              height: W * .096,
+              width: double.infinity,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: W * .060),
+                children: [
+                  InkWell(
+                      onTap: () {
+                        homeLogic.number.value = 0;
+                      },
+                      child: StyleButton.button(
+                          'Premium Salons',
+                          homeLogic.number.value == 0
+                              ? AppColors.buttonColor
+                              : AppColors.White)),
+                  SizedBox(
+                    width: W * .040,
+                  ),
+                  InkWell(
+                      onTap: () {
+                        homeLogic.number.value = 1;
+                      },
+                      child: StyleButton.button(
+                          'Medium Salons',
+                          homeLogic.number.value == 1
+                              ? AppColors.buttonColor
+                              : AppColors.White)),
+                  SizedBox(
+                    width: W * .040,
+                  ),
+                  InkWell(
+                      onTap: () {
+                        homeLogic.number.value = 2;
+                      },
+                      child: StyleButton.button(
+                          'Basic Salons',
+                          homeLogic.number.value == 2
+                              ? AppColors.buttonColor
+                              : AppColors.White)),
+                ],
+              ),
             ),
           ),
           Padding(

@@ -21,10 +21,10 @@ class _HomePageState extends State<HomePage> {
   HomeLogic homeController = Get.put(HomeLogic());
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        systemNavigationBarColor: AppColors.background,
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light));
+    print('home page');
     double W = Mq.w;
     return Scaffold(
       backgroundColor: AppColors.bodyColor,
@@ -142,13 +142,14 @@ class _HomePageState extends State<HomePage> {
                               color: AppColors.formColor),
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: W * .030),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
+                            child: Container(
+                              height: W * .1,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
                                     height: W * .048,
+                                    width: W * .048,
                                     decoration: const BoxDecoration(
                                         image: DecorationImage(
                                             fit: BoxFit.fitHeight,
@@ -156,56 +157,48 @@ class _HomePageState extends State<HomePage> {
                                               'assets/search.png',
                                             ))),
                                   ),
-                                ),
-                                Flexible(
-                                  flex: 11,
-                                  child: Container(
-                                    height: W * .1,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: W * .01),
-                                    child: Align(
-                                      alignment: Alignment.topCenter,
-                                      child: TextFormField(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      const SearchPage()));
-                                        },
-                                        maxLines: 1,
-                                        cursorColor: Colors.grey.shade400,
-                                        decoration: InputDecoration(
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                    vertical: W * .030),
-                                            border: InputBorder.none,
-                                            hintText:
-                                                'Search location & services',
-                                            hintStyle: GoogleFonts.poppins(
-                                                color: Colors.grey.shade300,
-                                                fontSize: W * .035,
-                                                fontWeight: FontWeight.w500)),
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.grey.shade700,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: W * .040),
+                                      child: Container(
+                                        child: TextField(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        const SearchPage()));
+                                          },
+                                          maxLines: 1,
+                                          cursorColor: Colors.grey.shade400,
+                                          decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              hintText:
+                                                  'Search location & services',
+                                              hintStyle: GoogleFonts.poppins(
+                                                  color: Colors.grey.shade300,
+                                                  fontSize: W * .035,
+                                                  fontWeight: FontWeight.w500)),
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.grey.shade700,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
-                                    height: W * .045,
+                                  Container(
+                                    height: W * .048,
+                                    width: W * .048,
                                     decoration: const BoxDecoration(
                                         image: DecorationImage(
                                             fit: BoxFit.fitHeight,
                                             image:
                                                 AssetImage('assets/path.png'))),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),

@@ -3,31 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kaichi_user/services/auth/getx_signupApi.dart';
 import 'package:pinput/pinput.dart';
 
-import 'package:kaichi_user/services/auth/getx_loginApi.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/view/bottom_navigation.dart';
-import 'package:kaichi_user/view/homepage/home_page.dart';
 import 'package:kaichi_user/view_model/getx_pininput.dart';
 
-class PinInputPage extends StatefulWidget {
-  String phone;
-  PinInputPage({
+class PinPut2Page extends StatefulWidget {
+  String email;
+  String name;
+  String phoneNo;
+  PinPut2Page({
     Key? key,
-    required this.phone,
+    required this.email,
+    required this.name,
+    required this.phoneNo,
   }) : super(key: key);
 
   @override
-  State<PinInputPage> createState() => _PinInputPageState();
+  State<PinPut2Page> createState() => _PinPut2PageState();
 }
 
-class _PinInputPageState extends State<PinInputPage> {
+class _PinPut2PageState extends State<PinPut2Page> {
+  SignupApi signupApi = Get.put(SignupApi());
   PinInput pinInput = Get.put(PinInput());
   final formKey = GlobalKey<FormState>();
-  LoginApi loginApi = Get.put(LoginApi());
   @override
   Widget build(BuildContext context) {
     double W = Mq.w;
@@ -121,19 +124,21 @@ class _PinInputPageState extends State<PinInputPage> {
                   ),
                   Obx(() => StyleButton.loginLike(context, () {
                         if (formKey.currentState!.validate()) {
-                          loginApi.isLoading.value = true;
-                          loginApi
-                              .loginApi(
+                          signupApi.isLoading.value = true;
+                          signupApi
+                              .signUpApi(
+                                  widget.email,
+                                  widget.name,
+                                  widget.phoneNo,
                                   pinInput.controller.value.text.toString(),
-                                  widget.phone,
                                   context)
                               .then((value) {
-                            loginApi.isLoading.value = false;
+                            signupApi.isLoading.value = false;
                             pinInput.controller.value.clear();
                           });
                         }
                       }, 'VERIFY OTP', AppColors.buttonColor,
-                          loginApi.isLoading.value))
+                          signupApi.isLoading.value))
                 ],
               ),
             ),

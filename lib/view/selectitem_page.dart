@@ -2,6 +2,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,6 +25,14 @@ class SelectItemPage extends StatefulWidget {
 
 class _SelectItemPageState extends State<SelectItemPage> {
   SelectedItem selectedItem = Get.put(SelectedItem());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    selectedItem.addFun();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double W = Mq.w;
@@ -31,6 +40,10 @@ class _SelectItemPageState extends State<SelectItemPage> {
       backgroundColor: AppColors.bodyColor,
       appBar: AppBar(
         centerTitle: true,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: AppColors.background,
+          statusBarIconBrightness: Brightness.light,
+        ),
         backgroundColor: AppColors.White,
         title: Text(
           widget.name,
@@ -293,11 +306,16 @@ class _SelectItemPageState extends State<SelectItemPage> {
                                                   elevation: 2,
                                                   child: InkWell(
                                                     onTap: () {
+                                                      selectedItem.items.add(
+                                                          selectedItem
+                                                              .item1[i]);
+                                                      selectedItem
+                                                              .price.value -=
+                                                          selectedItem.item1[i]
+                                                              .Price as int;
                                                       selectedItem.item1.remove(
                                                           selectedItem
                                                               .item1[i]);
-                                                      // selectedItem.items
-                                                      //     .add(selectedItem.item1[i]);
                                                     },
                                                     child: Container(
                                                       height: W * .070,
@@ -496,8 +514,8 @@ class _SelectItemPageState extends State<SelectItemPage> {
                                                     selectedItem.item1.add(
                                                         selectedItem.items[i]);
                                                     selectedItem.price.value +=
-                                                        selectedItem
-                                                            .items[i].Price;
+                                                        selectedItem.items[i]
+                                                            .Price as int;
                                                     selectedItem.items.remove(
                                                         selectedItem.items[i]);
                                                   },

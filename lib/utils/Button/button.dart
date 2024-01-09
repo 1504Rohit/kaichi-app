@@ -4,8 +4,8 @@ import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 
 class StyleButton {
-  static Widget loginLike(
-      BuildContext context, VoidCallback onClicked, String name, Color color) {
+  static Widget loginLike(BuildContext context, VoidCallback onClicked,
+      String name, Color color, bool isLoading) {
     double W = Mq.w;
     return ElevatedButton(
       style: ButtonStyle(
@@ -20,13 +20,17 @@ class StyleButton {
         // Navigator.push(context,
         //     MaterialPageRoute(builder: (context) => const LoginScreen()));
       },
-      child: Text(
-        name,
-        style: GoogleFonts.poppins(
-            fontSize: W * .045,
-            fontWeight: FontWeight.w600,
-            color: Colors.black),
-      ),
+      child: isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : Text(
+              name,
+              style: GoogleFonts.poppins(
+                  fontSize: W * .045,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black),
+            ),
     );
   }
 

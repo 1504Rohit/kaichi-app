@@ -1,5 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:kaichi_user/services/auth/getx_loginApi.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
@@ -13,12 +19,34 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  String _imagepath = '';
+  final ImagePicker imgpicker = ImagePicker();
+  LoginApi loginApi = Get.put(LoginApi());
+  Future getImage() async {
+    try {
+      var pickedFile = await imgpicker.pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        setState(() {
+          _imagepath = pickedFile.path;
+        });
+      } else {
+        print("No image is selected.");
+      }
+    } catch (e) {
+      print("error while picking image.");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double W = Mq.w;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(249, 249, 249, 1),
       appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light,
+        ),
         toolbarHeight: W * .198,
         centerTitle: true,
         backgroundColor: AppColors.background,
@@ -54,29 +82,36 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       Container(
                         height: W * .240,
                         width: W * .240,
+                        clipBehavior: Clip.hardEdge,
                         decoration: BoxDecoration(
-                          image: const DecorationImage(
-                              filterQuality: FilterQuality.high,
-                              fit: BoxFit.cover,
-                              image: AssetImage('assets/Profile Image.png')),
                           shape: BoxShape.circle,
                           border: Border.all(
                               color: AppColors.buttonColor, width: 1),
                         ),
+                        child: _imagepath == ''
+                            ? Image.asset('assets/Profile Image.png')
+                            : CircleAvatar(
+                                backgroundImage: FileImage(File(_imagepath)),
+                              ),
                       ),
                       Align(
                         alignment: Alignment.bottomRight,
-                        child: Container(
-                          height: W * .064,
-                          width: W * .064,
-                          decoration: BoxDecoration(
-                            image: const DecorationImage(
-                                filterQuality: FilterQuality.high,
-                                image: AssetImage('assets/edit.png')),
-                            color: AppColors.buttonColor,
-                            shape: BoxShape.circle,
-                            border:
-                                Border.all(color: AppColors.White, width: 3),
+                        child: InkWell(
+                          onTap: () {
+                            getImage();
+                          },
+                          child: Container(
+                            height: W * .064,
+                            width: W * .064,
+                            decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                  filterQuality: FilterQuality.high,
+                                  image: AssetImage('assets/edit.png')),
+                              color: AppColors.buttonColor,
+                              shape: BoxShape.circle,
+                              border:
+                                  Border.all(color: AppColors.White, width: 3),
+                            ),
                           ),
                         ),
                       )
@@ -103,7 +138,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 SizedBox(
                   height: W * .040,
                 ),
-                CustomCard.customCard3('Email Id', 'johndoe@gmail.com'),
+                CustomCard.customCard3('Email Id', ' johndoe@gmail.com'),
                 SizedBox(
                   height: W * .040,
                 ),
@@ -111,7 +146,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ],
             ),
             StyleButton.loginLike(
-                context, () {}, 'EDIT PROFILE', AppColors.buttonColor)
+                context, () {}, 'EDIT PROFILE', AppColors.buttonColor, false)
           ],
         ),
       ),

@@ -149,6 +149,9 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light));
     double W = Mq.w;
     return Scaffold(
       bottomSheet: Container(

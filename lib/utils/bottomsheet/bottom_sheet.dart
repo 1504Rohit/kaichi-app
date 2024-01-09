@@ -284,9 +284,11 @@ class CustomBottomSheet {
                     height: W * .060,
                   ),
                   StyleButton.loginLike(context, () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) => LoginPage()));
-                  }, button, btn)
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (_) => const LoginPage()),
+                        (route) => false);
+                  }, button, btn, false)
                 ],
               ),
             ),
@@ -602,7 +604,7 @@ class CustomBottomSheet {
           return Obx(() => Wrap(
                 children: [
                   Container(
-                    height: W * 1.10,
+                    height: W * 1.20,
                     decoration: const BoxDecoration(
                         color: Color.fromRGBO(255, 255, 255, 1),
                         borderRadius: BorderRadius.only(
@@ -777,7 +779,7 @@ class CustomBottomSheet {
                             TextFormField(
                               maxLines: 6,
                               style: GoogleFonts.poppins(
-                                  fontSize: W * .030,
+                                  fontSize: W * .036,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey),
                               decoration: InputDecoration(
@@ -785,7 +787,7 @@ class CustomBottomSheet {
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: W * .020, horizontal: W * .030),
                                   hintStyle: GoogleFonts.poppins(
-                                      fontSize: W * .030,
+                                      fontSize: W * .036,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.grey),
                                   border: OutlineInputBorder(
@@ -795,7 +797,8 @@ class CustomBottomSheet {
                             SizedBox(
                               height: W * .040,
                             ),
-                            StyleButton.loginLike(context, () {}, button, btn)
+                            StyleButton.loginLike(
+                                context, () {}, button, btn, false)
                           ],
                         ),
                       ),
@@ -810,22 +813,23 @@ class CustomBottomSheet {
       BuildContext context, String button, Color btn) {
     Appoint appoint = Get.put(Appoint());
     double W = Mq.w;
+    List<String> list = ['Sun', 'Mon', 'Wed', 'Thu', 'Fri'];
+    List<String> list1 = [
+      '10:00 AM',
+      '10:30 AM',
+      '11:00 AM',
+      '11:30 AM',
+      '12:00 PM',
+      '12:30 PM',
+      '01:00 PM',
+      '01:30 PM'
+    ];
     return showModalBottomSheet(
         context: context,
+        isScrollControlled: true,
         builder: (builder) {
-          List<String> list = ['Sun', 'Mon', 'Wed', 'Thu', 'Fri'];
-          List<String> list1 = [
-            '10:00 AM',
-            '10:30 AM',
-            '11:00 AM',
-            '11:30 AM',
-            '12:00 PM',
-            '12:30 PM',
-            '01:00 PM',
-            '01:30 PM'
-          ];
           return Container(
-            height: W * 8.40,
+            height: W * 1.50,
             decoration: const BoxDecoration(
                 color: Color.fromRGBO(255, 255, 255, 1),
                 borderRadius: BorderRadius.only(
@@ -838,7 +842,7 @@ class CustomBottomSheet {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: W * .040,
+                      height: W * .080,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -951,11 +955,11 @@ class CustomBottomSheet {
                       height: W * .010,
                     ),
                     Container(
-                        height: W * .4,
+                        height: W * .5,
                         child: Obx(() => Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                for (int i = 0; i < 6; i += 2)
+                                for (int i = 0; i < 8; i += 2)
                                   Row(
                                     children: [
                                       Row(
@@ -1029,12 +1033,18 @@ class CustomBottomSheet {
                                   )
                               ],
                             ))),
+                    SizedBox(
+                      height: W * .020,
+                    ),
                     Text(
                       'Appointment Date & Time',
                       style: GoogleFonts.poppins(
                           fontSize: W * .034,
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
+                    ),
+                    SizedBox(
+                      height: W * .020,
                     ),
                     Row(
                       children: [
@@ -1056,9 +1066,10 @@ class CustomBottomSheet {
                       ],
                     ),
                     SizedBox(
-                      height: W * .020,
+                      height: W * .060,
                     ),
                     StyleButton.loginLike(context, () {
+                      Navigator.pop(context);
                       CustomDialog.custdialogConfirm(
                           context,
                           'Your Appointment Has Been Confirmed',
@@ -1067,7 +1078,7 @@ class CustomBottomSheet {
                           'on Wednesday, August 17, 2023 at 11:00 AM',
                           'VIEW APPOINTMENT',
                           AppColors.buttonColor);
-                    }, button, btn)
+                    }, button, btn, false)
                   ],
                 ),
               ),

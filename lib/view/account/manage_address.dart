@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/bottomsheet/bottom_sheet.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/utils/custom%20card/custom_card.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:kaichi_user/view_model/getx_brightness.dart';
 
 class ManageAddressPage extends StatefulWidget {
   const ManageAddressPage({super.key});
@@ -15,6 +17,7 @@ class ManageAddressPage extends StatefulWidget {
 }
 
 class _ManageAddressPageState extends State<ManageAddressPage> {
+  BrightnessCont brightnessCont = Get.put(BrightnessCont());
   @override
   Widget build(BuildContext context) {
     double W = Mq.w;
@@ -23,10 +26,7 @@ class _ManageAddressPageState extends State<ManageAddressPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         systemOverlayStyle: SystemUiOverlayStyle(
-          // Status bar color
-          statusBarColor: Colors.transparent,
-
-          // Status bar brightness (optional)
+          statusBarColor: AppColors.background,
           statusBarIconBrightness:
               Brightness.light, // For An// For iOS (dark icons)
         ),

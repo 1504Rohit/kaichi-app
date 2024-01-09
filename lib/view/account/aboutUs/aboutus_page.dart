@@ -19,7 +19,7 @@ class AboutUsPage extends StatelessWidget {
         backgroundColor: Colors.white,
         systemOverlayStyle: SystemUiOverlayStyle(
           // Status bar color
-          statusBarColor: Colors.transparent,
+          statusBarColor: AppColors.background,
 
           // Status bar brightness (optional)
           statusBarIconBrightness:

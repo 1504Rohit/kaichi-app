@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kaichi_user/services/auth/getx_loginApi.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/bottomsheet/bottom_sheet.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
@@ -19,7 +22,11 @@ class AccountPage extends StatefulWidget {
 class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light));
     double W = Mq.w;
+    LoginApi loginApi = Get.put(LoginApi());
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(W * .198),
@@ -30,48 +37,46 @@ class _AccountPageState extends State<AccountPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: W * .060, vertical: W * .020),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: W * .12,
-                          width: W * .12,
-                          child: Image.asset(
-                            'assets/Profile Image.png',
-                          ),
-                        ),
-                        SizedBox(
-                          width: W * .020,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'John Doe',
-                              style: GoogleFonts.poppins(
-                                  fontSize: W * .040,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.White),
-                            ),
-                            SizedBox(
-                              height: W * .006,
-                            ),
-                            Text(
-                              'johndoe@gmail.com',
-                              style: GoogleFonts.poppins(
-                                  fontSize: W * .028,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.White),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                padding: EdgeInsets.symmetric(horizontal: W * .060),
+                child: AppBar(
+                  centerTitle: false,
+                  backgroundColor: AppColors.background,
+                  leading: Container(
+                      height: W * .12,
+                      width: W * .12,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: Image.asset(
+                        'assets/Profile Image.png',
+                      )
+                      // loginApi.user.data.imagePath),
+                      ),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        // loginApi.user.data.name,
+                        'John Doe',
+                        style: GoogleFonts.poppins(
+                            fontSize: W * .040,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.White),
+                      ),
+                      SizedBox(
+                        height: W * .006,
+                      ),
+                      Text(
+                        // loginApi.user.data.email,
+                        'johndoe@gmail.com',
+                        style: GoogleFonts.poppins(
+                            fontSize: W * .028,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.White),
+                      ),
+                    ],
+                  ),
+                  actions: [
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -89,7 +94,68 @@ class _AccountPageState extends State<AccountPage> {
                     ),
                   ],
                 ),
-              ),
+              )
+              // Padding(
+              //   padding: EdgeInsets.symmetric(
+              //       horizontal: W * .060, vertical: W * .020),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Row(
+              //         children: [
+              //           SizedBox(
+              //             height: W * .12,
+              //             width: W * .12,
+              //             child: Image.asset(
+              //               'assets/Profile Image.png',
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             width: W * .020,
+              //           ),
+              //           Column(
+              //             crossAxisAlignment: CrossAxisAlignment.start,
+              //             children: [
+              //               Text(
+              //                 'John Doe',
+              //                 style: GoogleFonts.poppins(
+              //                     fontSize: W * .040,
+              //                     fontWeight: FontWeight.w600,
+              //                     color: AppColors.White),
+              //               ),
+              //               SizedBox(
+              //                 height: W * .006,
+              //               ),
+              //               Text(
+              //                 'johndoe@gmail.com',
+              //                 style: GoogleFonts.poppins(
+              //                     fontSize: W * .028,
+              //                     fontWeight: FontWeight.w500,
+              //                     color: AppColors.White),
+              //               ),
+              //             ],
+              //           ),
+              //         ],
+              //       ),
+              //       InkWell(
+              //         onTap: () {
+              //           Navigator.push(
+              //               context,
+              //               MaterialPageRoute(
+              //                   builder: (_) => const EditProfilePage()));
+              //         },
+              //         child: Text(
+              //           'Edit >',
+              //           style: GoogleFonts.poppins(
+              //               fontSize: W * .040,
+              //               fontWeight: FontWeight.w400,
+              //               color: AppColors.buttonColor),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           )),
         ),

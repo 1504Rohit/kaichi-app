@@ -19,20 +19,34 @@ class CustomCard {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              qus,
-              style: GoogleFonts.poppins(
-                  fontSize: W * .036,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black),
+            Expanded(
+              child: Text(
+                qus,
+                style: GoogleFonts.poppins(
+                    fontSize: W * .036,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black),
+              ),
             ),
-            Text(
-              ans,
-              style: GoogleFonts.poppins(
-                  fontSize: W * .036,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.buttonColor),
-            ),
+            IntrinsicWidth(
+              child: TextFormField(
+                initialValue: ans,
+                style: GoogleFonts.poppins(
+                    fontSize: W * .036,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.buttonColor),
+                textAlign: TextAlign.end,
+                cursorColor: AppColors.buttonColor,
+                decoration: InputDecoration(border: InputBorder.none),
+                //   initialValue:  Text(
+                //   ans,
+                //   style: GoogleFonts.poppins(
+                //       fontSize: W * .036,
+                //       fontWeight: FontWeight.w500,
+                //       color: AppColors.buttonColor),
+                // ), ,
+              ),
+            )
           ],
         ),
       ),
@@ -465,12 +479,12 @@ class CustomCard {
           clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
               border: Border.all(color: AppColors.buttonColor, width: 0.5),
-              borderRadius: BorderRadius.circular(12)),
+              borderRadius: BorderRadius.circular(W * .020)),
           child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Flexible(
+            Expanded(
               flex: 3,
               child: Container(
-                height: Mq.h * .140,
+                height: Mq.h * .150,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.cover, image: AssetImage(pic))),
@@ -485,79 +499,73 @@ class CustomCard {
                 ),
               ),
             ),
-            Flexible(
+            Expanded(
               flex: 5,
-              child: Container(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: W * .020),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Text(
-                          heading,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: W * .020, vertical: W * .020),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Text(
+                        heading,
+                        style: GoogleFonts.poppins(
+                            fontSize: W * .043,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.background),
+                      ),
+                    ),
+                    SizedBox(height: Mq.h * .010),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                            height: W * .044,
+                            width: W * .044,
+                            child: Image.asset('assets/star.png')),
+                        SizedBox(
+                          width: W * .015,
+                        ),
+                        Text(
+                          rating,
                           style: GoogleFonts.poppins(
-                              fontSize: W * .044,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.background),
+                              fontSize: W * .028,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: Mq.h * .005,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                            height: W * .044,
+                            width: W * .044,
+                            child: Image.asset('assets/location.png')),
+                        SizedBox(
+                          width: W * .015,
                         ),
-                      ),
-                      SizedBox(height: Mq.h * .010),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                                height: W * .044,
-                                width: W * .044,
-                                child: Image.asset('assets/star.png')),
-                            SizedBox(
-                              width: W * .015,
-                            ),
-                            Text(
-                              rating,
-                              style: GoogleFonts.poppins(
-                                  fontSize: W * .028,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black),
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: Mq.h * .005,
-                      ),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                                height: W * .044,
-                                width: W * .044,
-                                child: Image.asset('assets/location.png')),
-                            SizedBox(
-                              width: W * .015,
-                            ),
-                            Expanded(
-                              child: Container(
-                                child: Text(
-                                  address,
-                                  textAlign: TextAlign.left,
-                                  style: GoogleFonts.poppins(
-                                      letterSpacing: -0.1,
-                                      fontSize: W * .028,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                        Container(
+                          width: W * .400,
+                          child: Text(
+                            address,
+                            textAlign: TextAlign.left,
+                            style: GoogleFonts.poppins(
+                                letterSpacing: -0.1,
+                                fontSize: W * .028,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
                 ),
               ),
             )

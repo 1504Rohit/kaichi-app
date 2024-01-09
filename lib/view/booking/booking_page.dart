@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
@@ -15,6 +16,9 @@ class BookingPage extends StatefulWidget {
 class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light));
     double W = Mq.w;
     return Scaffold(
       appBar: PreferredSize(
@@ -25,24 +29,24 @@ class _BookingPageState extends State<BookingPage> {
               child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: W * .060, vertical: W * .020),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.arrow_back,
-                      color: AppColors.background,
-                    ),
-                    Text(
-                      'Booking',
-                      style: GoogleFonts.poppins(
-                          fontSize: W * .048,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.White),
-                    ),
-                    InkWell(
+              AppBar(
+                centerTitle: true,
+                backgroundColor: AppColors.background,
+                leading: Icon(
+                  Icons.abc,
+                  color: AppColors.background,
+                ),
+                title: Text(
+                  'Booking',
+                  style: GoogleFonts.poppins(
+                      fontSize: W * .048,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.White),
+                ),
+                actions: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: W * .040),
+                    child: InkWell(
                       onTap: () {
                         Navigator.push(
                             context,
@@ -57,9 +61,44 @@ class _BookingPageState extends State<BookingPage> {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(
+              //       horizontal: W * .060, vertical: W * .020),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Icon(
+              //         Icons.arrow_back,
+              //         color: AppColors.background,
+              //       ),
+              //       Text(
+              //         'Booking',
+              //         style: GoogleFonts.poppins(
+              //             fontSize: W * .048,
+              //             fontWeight: FontWeight.w600,
+              //             color: AppColors.White),
+              //       ),
+              //       InkWell(
+              //         onTap: () {
+              //           Navigator.push(
+              //               context,
+              //               MaterialPageRoute(
+              //                   builder: (_) => const NotificationPage()));
+              //         },
+              //         child: SizedBox(
+              //           height: W * .080,
+              //           width: W * .080,
+              //           child: Image.asset(
+              //             'assets/notification.png',
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           )),
         ),

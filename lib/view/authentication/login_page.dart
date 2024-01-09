@@ -6,6 +6,7 @@ import 'package:kaichi_user/style/assets_links/assets_link.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
 import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/view/authentication/login_page1.dart';
+import 'package:kaichi_user/view/authentication/signup1_page.dart';
 import 'package:kaichi_user/view/authentication/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -83,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const LoginScreen()));
-                      }, 'LOGIN', AppColors.buttonColor),
+                      }, 'LOGIN', AppColors.buttonColor, false),
                       SizedBox(
                         height: Mq.h * .020,
                       ),
@@ -91,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SignupPage()));
+                                builder: (context) => Signup1Page()));
                       }, 'CREATE AN ACCOUNT', AppColors.background)
                     ],
                   ),

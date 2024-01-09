@@ -1,5 +1,6 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
@@ -38,6 +39,9 @@ class _SalonDetailsPageState extends State<SalonDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: AppColors.background,
+        statusBarIconBrightness: Brightness.light));
     double W = Mq.w;
     return Scaffold(
         appBar: PreferredSize(
@@ -533,14 +537,15 @@ class _SalonDetailsPageState extends State<SalonDetailsPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              height: W * .13,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(W * .018),
                                   border:
                                       Border.all(color: Colors.grey, width: 1)),
                               child: Padding(
-                                padding:
-                                    EdgeInsets.symmetric(horizontal: W * .030),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: W * .030,
+                                  vertical: W * .018,
+                                ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -577,14 +582,13 @@ class _SalonDetailsPageState extends State<SalonDetailsPage> {
                               ),
                             ),
                             Container(
-                              height: W * .13,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(W * .018),
                                   border:
                                       Border.all(color: Colors.grey, width: 1)),
                               child: Padding(
-                                padding:
-                                    EdgeInsets.symmetric(horizontal: W * .030),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: W * .030, vertical: W * .018),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,

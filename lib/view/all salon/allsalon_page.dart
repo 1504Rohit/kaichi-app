@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaichi_user/style/app_colors/app_colors.dart';
 import 'package:kaichi_user/utils/Button/button.dart';
@@ -7,6 +9,7 @@ import 'package:kaichi_user/utils/constants/constants.dart';
 import 'package:kaichi_user/utils/custom%20card/custom_card.dart';
 import 'package:kaichi_user/view/notification_page.dart';
 import 'package:kaichi_user/view/search_page.dart';
+import 'package:kaichi_user/view_model/getx_homepage.dart';
 
 class AllSalonPage extends StatefulWidget {
   const AllSalonPage({super.key});
@@ -18,6 +21,10 @@ class AllSalonPage extends StatefulWidget {
 class _AllSalonPageState extends State<AllSalonPage> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light));
+    HomeLogic homeLogic = Get.put(HomeLogic());
     double W = Mq.w;
     return Scaffold(
       backgroundColor: AppColors.bodyColor,
@@ -29,24 +36,24 @@ class _AllSalonPageState extends State<AllSalonPage> {
               child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: W * .040, vertical: W * .020),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.arrow_back,
-                      color: AppColors.background,
-                    ),
-                    Text(
-                      'Salon',
-                      style: GoogleFonts.poppins(
-                          fontSize: W * .048,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.White),
-                    ),
-                    InkWell(
+              AppBar(
+                centerTitle: true,
+                backgroundColor: AppColors.background,
+                leading: Icon(
+                  Icons.abc,
+                  color: AppColors.background,
+                ),
+                title: Text(
+                  'Salon',
+                  style: GoogleFonts.poppins(
+                      fontSize: W * .048,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.White),
+                ),
+                actions: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: W * .040),
+                    child: InkWell(
                       onTap: () {
                         Navigator.push(
                             context,
@@ -61,8 +68,8 @@ class _AllSalonPageState extends State<AllSalonPage> {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               Container(
                   height: W * .10,
@@ -88,88 +95,82 @@ class _AllSalonPageState extends State<AllSalonPage> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: W * .060),
-                        child: Container(
-                          height: W * .1,
-                          decoration: BoxDecoration(
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  blurRadius: 2.0,
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
-                              color: AppColors.formColor),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: W * .030),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
-                                    height: W * .048,
-                                    decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                            fit: BoxFit.fitHeight,
-                                            image: AssetImage(
-                                              'assets/search.png',
-                                            ))),
+                          padding: EdgeInsets.symmetric(horizontal: W * .060),
+                          child: Container(
+                            height: W * .1,
+                            decoration: BoxDecoration(
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.grey,
+                                    blurRadius: 2.0,
                                   ),
-                                ),
-                                Flexible(
-                                  flex: 11,
-                                  child: Container(
-                                    height: W * .1,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: W * .01),
-                                    child: Align(
-                                      alignment: Alignment.topCenter,
-                                      child: TextFormField(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      const SearchPage()));
-                                        },
-                                        maxLines: 1,
-                                        cursorColor: Colors.grey.shade400,
-                                        decoration: InputDecoration(
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                    vertical: W * .030),
-                                            border: InputBorder.none,
-                                            hintText:
-                                                'Search location & services',
-                                            hintStyle: GoogleFonts.poppins(
-                                                color: Colors.grey.shade300,
-                                                fontSize: W * .035,
-                                                fontWeight: FontWeight.w500)),
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.grey.shade700,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500),
+                                ],
+                                borderRadius: BorderRadius.circular(12),
+                                color: AppColors.formColor),
+                            child: Padding(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: W * .030),
+                              child: Container(
+                                height: W * .1,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: W * .048,
+                                      width: W * .048,
+                                      decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                              fit: BoxFit.fitHeight,
+                                              image: AssetImage(
+                                                'assets/search.png',
+                                              ))),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: W * .040),
+                                        child: Container(
+                                          child: TextField(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          const SearchPage()));
+                                            },
+                                            maxLines: 1,
+                                            cursorColor: Colors.grey.shade400,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                hintText:
+                                                    'Search location & services',
+                                                hintStyle: GoogleFonts.poppins(
+                                                    color: Colors.grey.shade300,
+                                                    fontSize: W * .035,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.grey.shade700,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                    Container(
+                                      height: W * .048,
+                                      width: W * .048,
+                                      decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                              fit: BoxFit.fitHeight,
+                                              image: AssetImage(
+                                                  'assets/path.png'))),
+                                    ),
+                                  ],
                                 ),
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
-                                    height: W * .045,
-                                    decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                            fit: BoxFit.fitHeight,
-                                            image:
-                                                AssetImage('assets/path.png'))),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                      )
+                          ))
                     ],
                   ))
             ],
@@ -181,23 +182,49 @@ class _AllSalonPageState extends State<AllSalonPage> {
           SizedBox(
             height: W * .050,
           ),
-          SizedBox(
-            height: W * .096,
-            width: double.infinity,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: W * .060),
-              children: [
-                StyleButton.button('Premium Salons', AppColors.buttonColor),
-                SizedBox(
-                  width: W * .040,
-                ),
-                StyleButton.button('Medium Salons', AppColors.White),
-                SizedBox(
-                  width: W * .040,
-                ),
-                StyleButton.button('Basic Salons', AppColors.White),
-              ],
+          Obx(
+            () => SizedBox(
+              height: W * .096,
+              width: double.infinity,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: W * .060),
+                children: [
+                  InkWell(
+                      onTap: () {
+                        homeLogic.number.value = 0;
+                      },
+                      child: StyleButton.button(
+                          'Premium Salons',
+                          homeLogic.number.value == 0
+                              ? AppColors.buttonColor
+                              : AppColors.White)),
+                  SizedBox(
+                    width: W * .040,
+                  ),
+                  InkWell(
+                      onTap: () {
+                        homeLogic.number.value = 1;
+                      },
+                      child: StyleButton.button(
+                          'Medium Salons',
+                          homeLogic.number.value == 1
+                              ? AppColors.buttonColor
+                              : AppColors.White)),
+                  SizedBox(
+                    width: W * .040,
+                  ),
+                  InkWell(
+                      onTap: () {
+                        homeLogic.number.value = 2;
+                      },
+                      child: StyleButton.button(
+                          'Basic Salons',
+                          homeLogic.number.value == 2
+                              ? AppColors.buttonColor
+                              : AppColors.White)),
+                ],
+              ),
             ),
           ),
           Expanded(

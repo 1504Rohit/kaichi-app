@@ -53,35 +53,32 @@ class _ForgotPageState extends State<ForgotPage> {
                   height: Mq.h * .020,
                 ),
                 SizedBox(
-                  height: Mq.h * .058,
-                  child: Center(
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(
-                            top: Mq.h * .020,
-                            bottom: Mq.h * .020,
-                            left: W * .040,
-                            right: W * .040),
-                        focusColor: AppColors.background,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12)),
-                        hintText: 'abc@gmail.com',
-                        hintStyle: GoogleFonts.poppins(
-                            fontSize: W * .032,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black),
-                      ),
-                      style: GoogleFonts.poppins(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(
+                          top: Mq.h * .018,
+                          bottom: Mq.h * .018,
+                          left: W * .040,
+                          right: W * .040),
+                      focusColor: AppColors.background,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(W * .020)),
+                      hintText: 'abc@gmail.com',
+                      hintStyle: GoogleFonts.poppins(
                           fontSize: W * .032,
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                     ),
+                    style: GoogleFonts.poppins(
+                        fontSize: W * .032,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black),
                   ),
                 ),
               ],
             ),
             StyleButton.loginLike(
-                context, () {}, 'SEND', AppColors.buttonColor),
+                context, () {}, 'SEND', AppColors.buttonColor, false),
           ],
         ),
       ),
